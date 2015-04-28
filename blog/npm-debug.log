@@ -1,0 +1,184 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/bin/node', '/usr/bin/npm', 'install', '-g', 'supervisor' ]
+2 info using npm@1.4.28
+3 info using node@v0.10.37
+4 verbose node symlink /usr/bin/node
+5 verbose cache add [ 'supervisor', null ]
+6 verbose cache add name=undefined spec="supervisor" args=["supervisor",null]
+7 verbose parsed url { protocol: null,
+7 verbose parsed url   slashes: null,
+7 verbose parsed url   auth: null,
+7 verbose parsed url   host: null,
+7 verbose parsed url   port: null,
+7 verbose parsed url   hostname: null,
+7 verbose parsed url   hash: null,
+7 verbose parsed url   search: null,
+7 verbose parsed url   query: null,
+7 verbose parsed url   pathname: 'supervisor',
+7 verbose parsed url   path: 'supervisor',
+7 verbose parsed url   href: 'supervisor' }
+8 silly lockFile 0f4d09e4-supervisor supervisor
+9 verbose lock supervisor /home/hwj/.npm/0f4d09e4-supervisor.lock
+10 silly lockFile 0f4d09e4-supervisor supervisor
+11 silly lockFile 0f4d09e4-supervisor supervisor
+12 verbose addNamed [ 'supervisor', '' ]
+13 verbose addNamed [ null, '*' ]
+14 silly lockFile b28163ae-supervisor supervisor@
+15 verbose lock supervisor@ /home/hwj/.npm/b28163ae-supervisor.lock
+16 silly addNameRange { name: 'supervisor', range: '*', hasData: false }
+17 verbose request where is /supervisor
+18 verbose request registry https://registry.npmjs.org/
+19 verbose request id ff9a5dcfd80bddba
+20 verbose url raw /supervisor
+21 verbose url resolving [ 'https://registry.npmjs.org/', './supervisor' ]
+22 verbose url resolved https://registry.npmjs.org/supervisor
+23 verbose request where is https://registry.npmjs.org/supervisor
+24 info trying registry request attempt 1 at 09:51:24
+25 verbose etag "43GVTMBFK2VKRFC4YH6Q9LPSR"
+26 http GET https://registry.npmjs.org/supervisor
+27 http 304 https://registry.npmjs.org/supervisor
+28 silly registry.get cb [ 304,
+28 silly registry.get   { date: 'Sat, 25 Apr 2015 01:51:26 GMT',
+28 silly registry.get     server: 'Apache',
+28 silly registry.get     via: '1.1 varnish',
+28 silly registry.get     'last-modified': 'Sat, 25 Apr 2015 01:51:26 GMT',
+28 silly registry.get     'cache-control': 'max-age=60',
+28 silly registry.get     etag: '"43GVTMBFK2VKRFC4YH6Q9LPSR"',
+28 silly registry.get     age: '32',
+28 silly registry.get     'x-served-by': 'cache-nrt6121-NRT',
+28 silly registry.get     'x-cache': 'HIT',
+28 silly registry.get     'x-cache-hits': '1',
+28 silly registry.get     'x-timer': 'S1429926686.337313,VS0,VE0',
+28 silly registry.get     vary: 'Accept',
+28 silly registry.get     'content-length': '0',
+28 silly registry.get     'keep-alive': 'timeout=10, max=50',
+28 silly registry.get     connection: 'Keep-Alive' } ]
+29 verbose etag https://registry.npmjs.org/supervisor from cache
+30 silly addNameRange number 2 { name: 'supervisor', range: '*', hasData: true }
+31 silly addNameRange versions [ 'supervisor',
+31 silly addNameRange   [ '0.0.4',
+31 silly addNameRange     '0.0.5',
+31 silly addNameRange     '0.0.6',
+31 silly addNameRange     '0.1.0',
+31 silly addNameRange     '0.1.1',
+31 silly addNameRange     '0.1.2',
+31 silly addNameRange     '0.1.3',
+31 silly addNameRange     '0.2.0',
+31 silly addNameRange     '0.3.0',
+31 silly addNameRange     '0.3.1',
+31 silly addNameRange     '0.3.2',
+31 silly addNameRange     '0.3.3',
+31 silly addNameRange     '0.3.4',
+31 silly addNameRange     '0.3.5',
+31 silly addNameRange     '0.3.6',
+31 silly addNameRange     '0.4.0',
+31 silly addNameRange     '0.4.1',
+31 silly addNameRange     '0.5.0',
+31 silly addNameRange     '0.5.1',
+31 silly addNameRange     '0.5.2',
+31 silly addNameRange     '0.5.3',
+31 silly addNameRange     '0.5.4',
+31 silly addNameRange     '0.5.5',
+31 silly addNameRange     '0.5.6',
+31 silly addNameRange     '0.5.7',
+31 silly addNameRange     '0.6.0' ] ]
+32 verbose addNamed [ 'supervisor', '0.6.0' ]
+33 verbose addNamed [ '0.6.0', '0.6.0' ]
+34 silly lockFile 0362a428-supervisor-0-6-0 supervisor@0.6.0
+35 verbose lock supervisor@0.6.0 /home/hwj/.npm/0362a428-supervisor-0-6-0.lock
+36 silly lockFile 0362a428-supervisor-0-6-0 supervisor@0.6.0
+37 silly lockFile 0362a428-supervisor-0-6-0 supervisor@0.6.0
+38 silly lockFile b28163ae-supervisor supervisor@
+39 silly lockFile b28163ae-supervisor supervisor@
+40 silly resolved [ { name: 'supervisor',
+40 silly resolved     version: '0.6.0',
+40 silly resolved     description: 'A supervisor program for running nodejs programs',
+40 silly resolved     author: { name: 'Isaac Z. Schlueter', email: 'i@izs.me' },
+40 silly resolved     contributors:
+40 silly resolved      [ [Object],
+40 silly resolved        [Object],
+40 silly resolved        [Object],
+40 silly resolved        [Object],
+40 silly resolved        [Object],
+40 silly resolved        [Object],
+40 silly resolved        [Object],
+40 silly resolved        [Object],
+40 silly resolved        [Object],
+40 silly resolved        [Object],
+40 silly resolved        [Object],
+40 silly resolved        [Object],
+40 silly resolved        [Object],
+40 silly resolved        [Object],
+40 silly resolved        [Object],
+40 silly resolved        [Object],
+40 silly resolved        [Object],
+40 silly resolved        [Object],
+40 silly resolved        [Object],
+40 silly resolved        [Object],
+40 silly resolved        [Object],
+40 silly resolved        [Object],
+40 silly resolved        [Object],
+40 silly resolved        [Object],
+40 silly resolved        [Object],
+40 silly resolved        [Object] ],
+40 silly resolved     repository:
+40 silly resolved      { type: 'git',
+40 silly resolved        url: 'git://github.com/isaacs/node-supervisor.git' },
+40 silly resolved     bugs: { url: 'https://github.com/isaacs/node-supervisor/issues' },
+40 silly resolved     homepage: 'https://github.com/isaacs/node-supervisor/',
+40 silly resolved     main: 'lib/supervisor.js',
+40 silly resolved     bin:
+40 silly resolved      { 'node-supervisor': 'lib/cli-wrapper.js',
+40 silly resolved        supervisor: 'lib/cli-wrapper.js' },
+40 silly resolved     engines: { node: '>=0.6.0' },
+40 silly resolved     preferGlobal: true,
+40 silly resolved     _id: 'supervisor@0.6.0',
+40 silly resolved     dist:
+40 silly resolved      { shasum: 'c8b965be5ae31822685f176df1f178dd5d85c332',
+40 silly resolved        tarball: 'http://registry.npmjs.org/supervisor/-/supervisor-0.6.0.tgz' },
+40 silly resolved     _from: 'supervisor@',
+40 silly resolved     _npmVersion: '1.4.3',
+40 silly resolved     _npmUser: { name: 'iangreenleaf', email: 'ian.greenleaf@gmail.com' },
+40 silly resolved     maintainers: [ [Object] ],
+40 silly resolved     directories: {},
+40 silly resolved     _shasum: 'c8b965be5ae31822685f176df1f178dd5d85c332',
+40 silly resolved     _resolved: 'https://registry.npmjs.org/supervisor/-/supervisor-0.6.0.tgz',
+40 silly resolved     readme: 'ERROR: No README data found!' } ]
+41 info install supervisor@0.6.0 into /usr/lib
+42 info installOne supervisor@0.6.0
+43 verbose lib/node_modules/supervisor unbuild
+44 verbose tar unpack /home/hwj/.npm/supervisor/0.6.0/package.tgz
+45 silly lockFile ac59d6d3--usr-lib-node-modules-supervisor tar:///usr/lib/node_modules/supervisor
+46 verbose lock tar:///usr/lib/node_modules/supervisor /home/hwj/.npm/ac59d6d3--usr-lib-node-modules-supervisor.lock
+47 silly lockFile 8bbb9b3b-npm-supervisor-0-6-0-package-tgz tar:///home/hwj/.npm/supervisor/0.6.0/package.tgz
+48 verbose lock tar:///home/hwj/.npm/supervisor/0.6.0/package.tgz /home/hwj/.npm/8bbb9b3b-npm-supervisor-0-6-0-package-tgz.lock
+49 silly gunzTarPerm modes [ '775', '664' ]
+50 error Error: EACCES, mkdir '/usr/lib/node_modules/supervisor'
+50 error  { [Error: EACCES, mkdir '/usr/lib/node_modules/supervisor']
+50 error   errno: 3,
+50 error   code: 'EACCES',
+50 error   path: '/usr/lib/node_modules/supervisor',
+50 error   fstream_type: 'Directory',
+50 error   fstream_path: '/usr/lib/node_modules/supervisor',
+50 error   fstream_class: 'DirWriter',
+50 error   fstream_stack:
+50 error    [ '/usr/lib/node_modules/npm/node_modules/fstream/lib/dir-writer.js:36:23',
+50 error      '/usr/lib/node_modules/npm/node_modules/mkdirp/index.js:46:53',
+50 error      'Object.oncomplete (fs.js:108:15)' ] }
+51 error Please try running this command again as root/Administrator.
+52 error System Linux 3.16.0-34-generic
+53 error command "/usr/bin/node" "/usr/bin/npm" "install" "-g" "supervisor"
+54 error cwd /home/hwj/web/blog
+55 error node -v v0.10.37
+56 error npm -v 1.4.28
+57 error path /usr/lib/node_modules/supervisor
+58 error fstream_path /usr/lib/node_modules/supervisor
+59 error fstream_type Directory
+60 error fstream_class DirWriter
+61 error code EACCES
+62 error errno 3
+63 error stack Error: EACCES, mkdir '/usr/lib/node_modules/supervisor'
+64 error fstream_stack /usr/lib/node_modules/npm/node_modules/fstream/lib/dir-writer.js:36:23
+64 error fstream_stack /usr/lib/node_modules/npm/node_modules/mkdirp/index.js:46:53
+64 error fstream_stack Object.oncomplete (fs.js:108:15)
+65 verbose exit [ 3, true ]
