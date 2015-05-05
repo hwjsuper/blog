@@ -3,20 +3,20 @@ var crypto = require('crypto'),
     Post = require('../models/post.js');
 
 module.exports = function(app) {
-app.get('/', function (req, res) {
-  Post.get(null, function (err, posts) {
-    if (err) {
-      posts = [];
-    } 
-    res.render('index', {
-      title: '主页',
-      user: req.session.user,
-      posts: posts,
-      success: req.flash('success').toString(),
-      error: req.flash('error').toString()
+  app.get('/', function (req, res) {
+    Post.get(null, function (err, posts) {
+      if (err) {
+        posts = [];
+      } 
+      res.render('index', {
+        title: '主页',
+        user: req.session.user,
+        posts: posts,
+        success: req.flash('success').toString(),
+        error: req.flash('error').toString()
+      });
     });
   });
-});
 
   app.get('/reg', checkNotLogin);
   app.get('/reg', function (req, res) {
@@ -104,19 +104,19 @@ app.get('/', function (req, res) {
     });
   });
 
-app.post('/post', checkLogin);
-app.post('/post', function (req, res) {
-  var currentUser = req.session.user,
-      post = new Post(currentUser.name, req.body.title, req.body.post);
-  post.save(function (err) {
-    if (err) {
-      req.flash('error', err); 
-      return res.redirect('/');
-    }
-    req.flash('success', '发布成功!');
-    res.redirect('/');//发表成功跳转到主页
+  app.post('/post', checkLogin);
+  app.post('/post', function (req, res) {
+    var currentUser = req.session.user,
+        post = new Post(currentUser.name, req.body.title, req.body.post);
+    post.save(function (err) {
+      if (err) {
+        req.flash('error', err); 
+        return res.redirect('/');
+      }
+      req.flash('success', '发布成功!');
+      res.redirect('/');//发表成功跳转到主页
+    });
   });
-});
 
   app.get('/logout', checkLogin);
   app.get('/logout', function (req, res) {
