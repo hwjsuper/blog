@@ -127,6 +127,22 @@ app.get('/logout', function (req, res) {
   res.redirect('/');
 });
 
+app.get('/upload', checkLogin);
+app.get('/upload', function (req, res) {
+  res.render('upload', {
+    title: '文件上传',
+    user: req.session.user,
+    success: req.flash('success').toString(),
+    error: req.flash('error').toString()
+  });
+});
+
+app.post('/upload', checkLogin);
+app.post('/upload', function (req, res) {
+  req.flash('success', '文件上传成功!');
+  res.redirect('/upload');
+});
+
 function checkLogin(req, res, next) {
   if (!req.session.user) {
     req.flash('error', '未登录!'); 
