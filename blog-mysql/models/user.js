@@ -24,6 +24,7 @@ User.prototype.save = function(callback) {
 			throw err;
 			return callback(err);
 		}
+		console.log("save");
 		console.log(rows);
 		callback(null, user);
 	});
@@ -63,11 +64,13 @@ User.get = function(name, callback) {
 			throw err;
 			return callback(err);
 		}
-		else if(rows){//!!!! is empty
-			console.log(rows);
-			callback(null);
+		else if(rows.length != 0){//!!!! rows is not empty
+			console.log("get");
+			console.log(rows[0].name);
+			callback(null,rows[0]);
 		}
 		else {
+			console.log(rows.length);
 			callback(null);
 		}
 	});

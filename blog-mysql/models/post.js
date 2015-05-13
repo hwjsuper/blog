@@ -29,7 +29,7 @@ Post.prototype.save = function(callback) {
 		post: this.post
 	};
 	// conn.connect();
-	var sql = 'INSERT INTO posts (name,time,title,post) VALUES (post.name, post.time, post.title, post.post);'
+	var sql = "INSERT INTO posts (name,time,title,post) VALUES ('"+post.name+"','"+post.time.minute+"', '"+post.title+"', '"+post.post+"');"
 	conn.query(sql, function(err, rows) {
 		if (err) {
 			throw err;
@@ -67,16 +67,22 @@ Post.prototype.save = function(callback) {
 //读取文章及其相关信息
 Post.get = function(name, callback) {
 	// conn.connect();
-	var sql = 'SELECT * FROM posts WHERE name = name;'
+	var sql ="SELECT * FROM posts ORDER BY time DESC;";
+	if(name == null){
+		sql = "SELECT * FROM posts ORDER BY time DESC ;";
+	}
+	else {
+		sql = "SELECT * FROM posts WHERE name = '"+name+"' ORDER BY time DESC ;";
+	}
 	conn.query(sql, function(err, rows) {
 		if (err) {
 			throw err;
 			return callback(err);
 		} else {
-			for (var i in rows) {
-				console.log(rows[i]);
-			}
-			callback(null, rows);
+			 rows.forEach(function (doc) {
+			       doc.post = markdown.toHTML(doc.post);//解析 markdown 为 html
+			});
+			callback(null, rows);//以数组形式返回查询的结果
 		}
 	});
 	// conn.end();

@@ -87,6 +87,7 @@ app.post('/login', function(req, res) {
 			req.flash('error', '用户不存在!');
 			return res.redirect('/login');
 		}
+		console.log(user.password,password);
 		if (user.password != password) {
 			req.flash('error', '密码错误!');
 			return res.redirect('/login');
@@ -111,14 +112,20 @@ app.post('/post', checkLogin);
 app.post('/post', function(req, res) {
 	var currentUser = req.session.user,
 		post = new Post(currentUser.name, req.body.title, req.body.post);
-	post.save(function(err) {
-		if (err) {
-			req.flash('error', err);
-			return res.redirect('/');
-		}
-		req.flash('success', '发布成功!');
-		res.redirect('/'); //发表成功跳转到主页
-	});
+	if(req.body.title == '' || req.body.post == ''){
+		req.flash('error', '内容不能为空!');
+		return res.redirect('/post');
+	}
+	else{
+		post.save(function(err) {
+			if (err) {
+				req.flash('error', err);
+				return res.redirect('/');
+			}
+			req.flash('success', '发布成功!');
+			res.redirect('/'); //发表成功跳转到主页
+		});
+	}
 });
 
 app.get('/logout', checkLogin);

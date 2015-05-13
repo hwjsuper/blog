@@ -47,10 +47,9 @@ mysql.on('busy', function (queuesize, maxconnections, which) {
 
 module.exports = mysql;
  // var sql1 = 'CREATE TABLE users (
- // id varchar(20) PRIMARY KEY NOT NULL,
- // name varchar(20) NOT NULL,
- // password varchar(20) NOT NULL,
- // email varchar(50) NOT NULL,
+ // name varchar(20) PRIMARY KEY NOT NULL,
+ // password varchar(50) NOT NULL,
+ // email varchar(50) 
  // );';
 
  //  var sql2 = 'CREATE TABLE posts (
@@ -58,5 +57,5 @@ module.exports = mysql;
  // name varchar(20) NOT NULL,
  // time varchar(40) NOT NULL,
  // title varchar(100) NOT NULL,
- // post varchar(1000) NOT NULL,
+ // post varchar(1000) NOT NULL
  // )';
