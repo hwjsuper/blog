@@ -29,7 +29,7 @@ Post.prototype.save = function(callback) {
 		post: this.post
 	};
 	// conn.connect();
-	var sql = "INSERT INTO posts (name,time,title,post) VALUES ('"+post.name+"','"+post.time.minute+"', '"+post.title+"', '"+post.post+"');"
+	var sql = "INSERT INTO Posts (name,time,title,post) VALUES ('"+post.name+"','"+post.time.minute+"', '"+post.title+"', '"+post.post+"');"
 	conn.query(sql, function(err, rows) {
 		if (err) {
 			throw err;
@@ -67,12 +67,12 @@ Post.prototype.save = function(callback) {
 //读取文章及其相关信息
 Post.get = function(name, callback) {
 	// conn.connect();
-	var sql ="SELECT * FROM posts ORDER BY time DESC;";
+	var sql ;
 	if(name == null){
-		sql = "SELECT * FROM posts ORDER BY time DESC ;";
+		sql = "SELECT * FROM Posts ORDER BY time DESC ;";
 	}
 	else {
-		sql = "SELECT * FROM posts WHERE name = '"+name+"' ORDER BY time DESC ;";
+		sql = "SELECT * FROM Posts WHERE name = '"+name+"' ORDER BY time DESC ;";
 	}
 	conn.query(sql, function(err, rows) {
 		if (err) {
@@ -117,4 +117,165 @@ Post.get = function(name, callback) {
 	//     });
 	//   });
 	// });
+};
+
+Post.getOne = function(name, time, title, callback) {
+	var self = this;
+	var sql ="SELECT * FROM Posts WHERE name = '"+name+"' AND time = '"+time+"' AND title = '"+title+"';";
+	conn.query(sql, function(err, rows) {
+		if (err) {
+			throw err;
+			return callback(err);
+		} 
+		else if (rows.length != 0) {
+			rows[0].post = markdown.toHTML(rows[0].post);//解析 markdown 为 html
+			callback(null, rows[0]);//返回查询的一篇文章
+		}
+		else {
+			callback(null);
+		}
+	});
+  // //打开数据库
+  // mongodb.open(function (err, db) {
+  //   if (err) {
+  //     return callback(err);
+  //   }
+  //   //读取 posts 集合
+  //   db.collection('posts', function (err, collection) {
+  //     if (err) {
+  //       mongodb.close();
+  //       return callback(err);
+  //     }
+  //     //根据用户名、发表日期及文章名进行查询
+  //     collection.findOne({
+  //       "name": name,
+  //       "time.day": day,
+  //       "title": title
+  //     }, function (err, doc) {
+  //       mongodb.close();
+  //       if (err) {
+  //         return callback(err);
+  //       }
+  //       //解析 markdown 为 html
+  //       doc.post = markdown.toHTML(doc.post);
+  //       callback(null, doc);//返回查询的一篇文章
+  //     });
+  //   });
+  // });
+};
+
+//返回原始发表的内容（markdown 格式）
+Post.edit = function(name, time, title, callback) {
+	var sql ="SELECT * FROM Posts WHERE name = '"+name+"' AND time = '"+time+"' AND title = '"+title+"';";
+	conn.query(sql, function(err, rows) {
+		if (err) {
+			throw err;
+			return callback(err);
+		} else {
+			callback(null, rows[0]);//返回查询的一篇文章
+		}
+	});
+  // //打开数据库
+  // mongodb.open(function (err, db) {
+  //   if (err) {
+  //     return callback(err);
+  //   }
+  //   //读取 posts 集合
+  //   db.collection('posts', function (err, collection) {
+  //     if (err) {
+  //       mongodb.close();
+  //       return callback(err);
+  //     }
+  //     //根据用户名、发表日期及文章名进行查询
+  //     collection.findOne({
+  //       "name": name,
+  //       "time.day": day,
+  //       "title": title
+  //     }, function (err, doc) {
+  //       mongodb.close();
+  //       if (err) {
+  //         return callback(err);
+  //       }
+  //       callback(null, doc);//返回查询的一篇文章（markdown 格式）
+  //     });
+  //   });
+  // });
+};
+
+//更新一篇文章及其相关信息
+Post.update = function(name, time, title, post, callback) {
+	var sql = "UPDATE Posts SET title = '"+title+"', post = '"+post+"' WHERE name = '"+name+"' AND time = '"+time+"';";
+	conn.query(sql, function(err, rows) {
+		if (err) {
+			throw err;
+			return callback(err);
+		}
+		callback(null);
+	});
+  // //打开数据库
+  // mongodb.open(function (err, db) {
+  //   if (err) {
+  //     return callback(err);
+  //   }
+  //   //读取 posts 集合
+  //   db.collection('posts', function (err, collection) {
+  //     if (err) {
+  //       mongodb.close();
+  //       return callback(err);
+  //     }
+  //     //更新文章内容
+  //     collection.update({
+  //       "name": name,
+  //       "time.day": day,
+  //       "title": title
+  //     }, {
+  //       $set: {post: post}
+  //     }, function (err) {
+  //       mongodb.close();
+  //       if (err) {
+  //         return callback(err);
+  //       }
+  //       callback(null);
+  //     });
+  //   });
+  // });
+};
+
+//删除一篇文章
+Post.remove = function(name, time, title, callback) {
+	var sql = "DELETE FROM Posts WHERE name = '"+name+"' AND time = '"+time+"' AND title = '"+title+"';";
+	conn.query(sql, function(err, rows) {
+		if (err) {
+			throw err;
+			return callback(err);
+		}
+		callback(null);
+	});
+  //打开数据库
+  // mongodb.open(function (err, db) {
+  //   if (err) {
+  //     return callback(err);
+  //   }
+  //   //读取 posts 集合
+  //   db.collection('posts', function (err, collection) {
+  //     if (err) {
+  //       mongodb.close();
+  //       return callback(err);
+  //     }
+  //     //根据用户名、日期和标题查找并删除一篇文章
+  //     collection.remove({
+  //       "name": name,
+  //       "time.day": day,
+  //       "title": title
+  //     }, {
+  //       w: 1
+  //     }, function (err) {
+  //       mongodb.close();
+  //       if (err) {
+  //         return callback(err);
+  //       }
+  //       callback(null);
+  //     });
+  //   });
+  // });
 };

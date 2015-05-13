@@ -17,7 +17,7 @@ User.prototype.save = function(callback) {
 		email: this.email
 	};
 	// conn.connect();
-	var sql = "INSERT INTO users (name,password,email) VALUES ('"+user.name+"','"+user.password+"','"+user.email+"');"
+	var sql = "INSERT INTO Users (name,password,email) VALUES ('"+user.name+"','"+user.password+"','"+user.email+"');"
 	//var sql = "INSERT INTO users (name,password,email) VALUES ('1','1','353371506@qq.com');"
 	conn.query(sql, function(err, rows) {
 		if (err) {
@@ -58,7 +58,7 @@ User.prototype.save = function(callback) {
 //读取用户信息
 User.get = function(name, callback) {
 	// conn.connect();
-	var sql = "SELECT * FROM users WHERE name = '"+name+"';"
+	var sql = "SELECT * FROM Users WHERE name = '"+name+"';"
 	conn.query(sql, function(err, rows) {
 		if (err) {
 			throw err;
