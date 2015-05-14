@@ -1,6 +1,8 @@
 module.exports = {
-  cookiesSecret: 'myblog',
-  db: 'blog',
+  cookiesSecret:'myblog',
   host: 'localhost',
-  port: 27017
+  user: 'root',
+  password: 'clannad',
+  database: 'blog',
+  port: 3306
 };

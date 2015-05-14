@@ -4,30 +4,12 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
 var routes = require('./routes/index');
 //var users = require('./routes/users');
-
 var settings = require('./settings');
 var flash = require('connect-flash');
 var session = require('express-session');
-//var MongoStore = require('connect-mongo')(session);
-//var mysql = require('mysql');
 var mysql = require('easymysql');
-// var conn = mysql.createConnection({
-//   host: 'localhost',
-//   user: 'root',
-//   password: 'clannad',
-//   database: 'blog',
-//   port: 3306
-// });
-// conn.connect();
-// conn.query('SELECT 1 + 1 AS solution', function(err, rows, fields) {
-//     if (err) throw err;
-//     console.log('The solution is: ', rows[0].solution);
-// });
-// conn.end();
-
 //for upload files
 var multer = require('multer');
 

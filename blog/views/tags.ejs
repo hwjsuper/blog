@@ -1,0 +1,5 @@
+<%- include header %>
+<% for (var i in tags) { %>
+  <a class="tag" href="/tags/<%= tags[i] %>"><%= tags[i] %></a>
+<% } %>
+<%- include footer %>
