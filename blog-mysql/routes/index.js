@@ -47,7 +47,6 @@ app.post('/reg', function(req, res) {
 		password: password,
 		email: req.body.email
 	});
-	console.log(newUser);
 	User.get(newUser.name, function(err, user) {
 		if (err) {
 			req.flash('error', err);
@@ -88,7 +87,6 @@ app.post('/login', function(req, res) {
 			req.flash('error', '用户不存在!');
 			return res.redirect('/login');
 		}
-		console.log(user.password, password);
 		if (user.password != password) {
 			req.flash('error', '密码错误!');
 			return res.redirect('/login');
@@ -204,25 +202,32 @@ app.post('/u/:name/:time/:title', function(req, res) {
 	var time = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + " " +
 		date.getHours() + ":" + (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes());
 	var name = req.body.name;
+	var email =  req.body.email;
 	var content = req.body.content;
-	Post.getOne(req.params.name, req.params.time, req.params.title, function(err, post) {
-		if (err) {
-			req.flash('error', err);
-			return res.redirect('/');
-		} else {
-			var id = post.id;
-			console.log(id);
-			var newComment = new Comment(id, name, time, content);
-			newComment.save(function(err) {
-				if (err) {
-					req.flash('error', err);
-					return res.redirect('back');
-				}
-				req.flash('success', '留言成功!');
-				res.redirect('back');
-			});
-		}
-	});
+	console.log(name,content);
+	if(name == '' || content  == ''){
+		req.flash('error', '内容不能为空!');
+		res.redirect('back');
+	}
+	else {
+		Post.getOne(req.params.name, req.params.time, req.params.title, function(err, post) {
+			if (err) {
+				req.flash('error', err);
+				return res.redirect('/');
+			} else {
+				var id = post.id;
+				var newComment = new Comment(id, name, email, time, content);
+				newComment.save(function(err) {
+					if (err) {
+						req.flash('error', err);
+						return res.redirect('back');
+					}
+					req.flash('success', '留言成功!');
+					res.redirect('back');
+				});
+			}
+		});
+	}
 });
 
 app.get('/edit/:name/:time/:title', checkLogin);

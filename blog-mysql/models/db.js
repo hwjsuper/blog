@@ -17,25 +17,33 @@ mysql.on('busy', function (queuesize, maxconnections, which) {
 
 module.exports = mysql;
 
- // var sql1 = 'CREATE TABLE Users (
- // id int(10)  PRIMARY KEY NOT NULL AUTO_INCREMENT,
- // name varchar(20) NOT NULL,
- // password varchar(50) NOT NULL,
- // email varchar(50) 
- // );';
+/* commends for mysql
+CREATE DATABASE blog CHARACTER SET 'utf8' COLLATE 'utf8_general_ci';
 
- //  var sql2 = 'CREATE TABLE Posts (
- // id int(10) PRIMARY KEY NOT NULL AUTO_INCREMENT,
- // name varchar(20) NOT NULL,
- // time varchar(40) NOT NULL,
- // title varchar(100) NOT NULL,
- // tags varchar(100) NOT NULL,
- // post varchar(1000) NOT NULL
- // );';
+use blog
 
- //  var sql3 = 'CREATE TABLE Comments (
- // A_id int(10) NOT NULL,
- // name varchar(20) NOT NULL,
- // time varchar(40) NOT NULL,
- // post varchar(1000) NOT NULL
- // );';
+CREATE TABLE Users (
+ id int(10)  PRIMARY KEY NOT NULL AUTO_INCREMENT,
+ name varchar(20) NOT NULL,
+ password varchar(50) NOT NULL,
+ email varchar(50) 
+ )ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE Posts (
+ id int(10) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+ name varchar(20) NOT NULL,
+ time varchar(40) NOT NULL,
+ title varchar(100) NOT NULL,
+ tags varchar(100) NOT NULL,
+ post text NOT NULL
+ )ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE Comments (
+ id int(10) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+ A_id int(10) NOT NULL,
+ name varchar(20) NOT NULL,
+ email varchar(50) ,
+ time varchar(40) NOT NULL,
+ post text NOT NULL
+ )ENGINE=InnoDB DEFAULT CHARSET=utf8;
+ */

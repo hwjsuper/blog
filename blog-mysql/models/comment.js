@@ -1,9 +1,10 @@
 var conn = require('./db');
 var markdown = require('markdown').markdown;
 
-function Comment(A_id, name, time, post) {
+function Comment(A_id, name, email, time, post) {
   this.A_id = A_id;
   this.name = name;
+  this.email = email;
   this.time = time;
   this.post = post;
 }
@@ -12,12 +13,12 @@ module.exports = Comment;
 
 //存储一条留言信息
 Comment.prototype.save = function(callback) {
-  var id = this.A_id, 
+  var A_id = this.A_id, 
     name = this.name,
+    email = this.email,
     time = this.time,
     post = this.post;
-    console.log(id,name,time,post);
-  var sql = "INSERT INTO Comments (A_id,name,time,post) VALUES ('" + id + "', '" + name + "','" + time + "', '" + post + "');"
+  var sql = "INSERT INTO Comments (A_id,name,email,time,post) VALUES ('" +A_id+ "', '" +name + "', '" +email + "','" +time + "', '" +post + "');"
   conn.query(sql, function(err, rows) {
     if (err) {
       throw err;
@@ -28,7 +29,7 @@ Comment.prototype.save = function(callback) {
 };
 //get留言信息
 Comment.get = function(id, callback) {
-  var sql ="SELECT * FROM Comments WHERE A_id = '"+id+"' ORDER BY time DESC;";
+  var sql ="SELECT * FROM Comments WHERE A_id = '"+id+"' ORDER BY id DESC;";
   conn.query(sql, function(err, rows) {
     if (err) {
       throw err;

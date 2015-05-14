@@ -145,7 +145,7 @@ Post.getTags = function(callback) {
 //返回含有特定标签的所有文章
 Post.getTag = function(tag, callback) {
 	var self = this;
-	var sql ="SELECT * FROM Posts WHERE tags like '%"+tag+"%';";
+	var sql ="SELECT * FROM Posts WHERE tags like '%"+tag+"%' ORDER BY id DESC;";
 	conn.query(sql, function(err, rows) {
 		if (err) {
 			throw err;
