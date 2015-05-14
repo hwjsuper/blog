@@ -19,7 +19,7 @@ Post.prototype.save = function(callback) {
 		year: date.getFullYear(),
 		month: date.getFullYear() + "-" + (date.getMonth() + 1),
 		day: date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate(),
-		minute: date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + "-" +
+		minute: date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + " " +
 			date.getHours() + ":" + (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes())
 	}
 	//要存入数据库的文档
@@ -164,11 +164,11 @@ Post.getTag = function(tag, callback) {
 };
 
 Post.formatTime = function(time){
-	var tmp = time.split("-");
+	var tmp = time.replace(/ /, "-").split("-");
 	var year = tmp[0];
 	var month = tmp[0]+"-"+tmp[1];
 	var day = tmp[0]+"-"+tmp[1]+"-"+tmp[2];
-	var minute = tmp[0]+"-"+tmp[1]+"-"+tmp[2]+"-"+tmp[3];
+	var minute = tmp[0]+"-"+tmp[1]+"-"+tmp[2]+" "+tmp[3];
 	var newTime = {
 		year: year,
 		month: month,

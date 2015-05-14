@@ -35,11 +35,8 @@ User.get = function(name, callback) {
 			throw err;
 			return callback(err);
 		} else if (rows.length != 0) { //rows is not empty
-			console.log("get");
-			console.log(rows[0].name);
 			callback(null, rows[0]);
 		} else {
-			console.log(rows.length);
 			callback(null);
 		}
 	});
