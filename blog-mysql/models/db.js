@@ -35,6 +35,7 @@ CREATE TABLE Posts (
  time varchar(40) NOT NULL,
  title varchar(100) NOT NULL,
  tags varchar(100) NOT NULL,
+ pv int(10) NOT NULL,
  post text NOT NULL
  )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

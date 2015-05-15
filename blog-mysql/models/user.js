@@ -1,4 +1,5 @@
 var conn = require('./db');
+var crypto = require('crypto');
 
 function User(user) {
 	this.name = user.name;

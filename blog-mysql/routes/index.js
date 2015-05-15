@@ -156,6 +156,38 @@ app.post('/upload', function(req, res) {
 	res.redirect('/upload');
 });
 
+app.get('/archive', function (req, res) {
+  Post.getArchive(function (err, posts) {
+    if (err) {
+      req.flash('error', err); 
+      return res.redirect('/');
+    }
+    res.render('archive', {
+      title: '归档',
+      posts: posts,
+      user: req.session.user,
+      success: req.flash('success').toString(),
+      error: req.flash('error').toString()
+    });
+  });
+});
+
+app.get('/search', function (req, res) {
+  Post.search(req.query.keyword, function (err, posts) {
+    if (err) {
+      req.flash('error', err); 
+      return res.redirect('/');
+    }
+    res.render('archive', {
+      title: "SEARCH:" + req.query.keyword,
+      posts: posts,
+      user: req.session.user,
+      success: req.flash('success').toString(),
+      error: req.flash('error').toString()
+    });
+  });
+});
+
 app.get('/u/:name', function(req, res) {
 	//检查用户是否存在
 	User.get(req.params.name, function(err, user) {
@@ -307,7 +339,7 @@ app.get('/tags/:tag', function (req, res) {
       req.flash('error',err); 
       return res.redirect('/');
     }
-    res.render('tag', {
+    res.render('archive', {
       title: 'TAG:' + req.params.tag,
       posts: posts,
       user: req.session.user,
@@ -315,6 +347,10 @@ app.get('/tags/:tag', function (req, res) {
       error: req.flash('error').toString()
     });
   });
+});
+
+app.use(function (req, res) {
+  res.render("404");
 });
 
 function checkLogin(req, res, next) {

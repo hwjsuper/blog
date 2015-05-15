@@ -28,10 +28,11 @@ Post.prototype.save = function(callback) {
 		time: time,
 		title: this.title,
 		tags: this.tags,
+		pv: 0,
 		post: this.post
 	};
 	// conn.connect();
-	var sql = "INSERT INTO Posts (name,time,title,tags,post) VALUES ('"+post.name+"','"+post.time.minute+"', '"+post.title+"', '"+post.tags+"', '"+post.post+"');"
+	var sql = "INSERT INTO Posts (name,time,title,tags,pv,post) VALUES ('"+post.name+"','"+post.time.minute+"', '"+post.title+"', '"+post.tags+"', "+post.pv+", '"+post.post+"');"
 	conn.query(sql, function(err, rows) {
 		if (err) {
 			throw err;
@@ -53,6 +54,7 @@ Post.getTen = function(name, page, callback) {
 				return callback(err);
 			}
 			maxId = result[0].max;
+			if(maxId == null) maxId = 0;
 			var maxid = parseInt(maxId-(page-1)*10);
 			var minid = parseInt(maxId-page*10);
 			sql = "SELECT * FROM Posts WHERE id <= "+maxid+"  AND id >"+minid+" ORDER BY id DESC;";
@@ -65,6 +67,7 @@ Post.getTen = function(name, page, callback) {
 					       doc.post = markdown.toHTML(doc.post);//解析 markdown 为 html
 					       doc.tags = doc.tags.split(",");
 					});
+					 console.log(maxId);
 					callback(null, rows,maxId);//以数组形式返回查询的结果
 				}
 			});
@@ -106,10 +109,35 @@ Post.getOne = function(name, time, title, callback) {
 		else if (rows.length != 0) {
 			rows[0].post = markdown.toHTML(rows[0].post);//解析 markdown 为 html
 			rows[0].tags = rows[0].tags.split(",");
+			rows[0].pv = rows[0].pv+1;
+			var sql = "UPDATE Posts SET pv = pv+1 WHERE name = '"+name+"' AND time = '"+time+"' AND title = '"+title+"';"
+			conn.query(sql, function(err) {
+				if (err) {
+					throw err;
+					return callback(err);
+				} 
+			});
 			callback(null, rows[0]);//返回查询的一篇文章
 		}
 		else {
 			callback(null);
+		}
+	});
+};
+
+//返回所有文章归档信息
+Post.getArchive = function(callback) {
+	var self = this;
+	sql = "SELECT name,time,title FROM Posts ORDER BY id DESC;";
+	conn.query(sql, function(err, rows) {
+		if (err) {
+			throw err;
+			return callback(err);
+		} else {
+			rows.forEach(function(row){
+				row.time = self.formatTime(row.time);
+			});
+			callback(null, rows);//以数组形式返回查询的结果
 		}
 	});
 };
@@ -212,3 +240,46 @@ Post.formatTime = function(time){
 	}
 	return newTime;
 }
+
+//返回通过标题关键字查询的所有文章信息
+Post.search = function(keyword, callback) {
+	var self = this;
+	var sql ="SELECT * FROM Posts WHERE title like '%"+keyword+"%' ORDER BY id DESC;";
+	conn.query(sql, function(err, rows) {
+		if (err) {
+			throw err;
+			return callback(err);
+		} 
+		rows.forEach(function(row){
+			row.time = self.formatTime(row.time);
+		});
+		callback(null, rows);
+	});
+  // mongodb.open(function (err, db) {
+  //   if (err) {
+  //     return callback(err);
+  //   }
+  //   db.collection('posts', function (err, collection) {
+  //     if (err) {
+  //       mongodb.close();
+  //       return callback(err);
+  //     }
+  //     var pattern = new RegExp(keyword, "i");
+  //     collection.find({
+  //       "title": pattern
+  //     }, {
+  //       "name": 1,
+  //       "time": 1,
+  //       "title": 1
+  //     }).sort({
+  //       time: -1
+  //     }).toArray(function (err, docs) {
+  //       mongodb.close();
+  //       if (err) {
+  //        return callback(err);
+  //       }
+  //       callback(null, docs);
+  //     });
+  //   });
+  // });
+};
