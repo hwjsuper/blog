@@ -43,26 +43,57 @@ Post.prototype.save = function(callback) {
 };
 
 //读取文章及其相关信息
-Post.get = function(name, callback) {
-	var sql ;
+Post.getTen = function(name, page, callback) {
+	var sql;
+	var maxId;
 	if(name == null){
-		sql = "SELECT * FROM Posts ORDER BY id DESC ;";
+		conn.query("SELECT MAX(id) AS max FROM Posts",function (err, result) {
+		    	if (err) {
+				throw err;
+				return callback(err);
+			}
+			maxId = result[0].max;
+			var maxid = parseInt(maxId-(page-1)*10);
+			var minid = parseInt(maxId-page*10);
+			sql = "SELECT * FROM Posts WHERE id <= "+maxid+"  AND id >"+minid+" ORDER BY id DESC;";
+			conn.query(sql, function(err, rows) {
+				if (err) {
+					throw err;
+					return callback(err);
+				} else {
+					 rows.forEach(function (doc) {
+					       doc.post = markdown.toHTML(doc.post);//解析 markdown 为 html
+					       doc.tags = doc.tags.split(",");
+					});
+					callback(null, rows,maxId);//以数组形式返回查询的结果
+				}
+			});
+		});
 	}
 	else {
-		sql = "SELECT * FROM Posts WHERE name = '"+name+"' ORDER BY id DESC ;";
-	}
-	conn.query(sql, function(err, rows) {
-		if (err) {
-			throw err;
-			return callback(err);
-		} else {
-			 rows.forEach(function (doc) {
-			       doc.post = markdown.toHTML(doc.post);//解析 markdown 为 html
-			       doc.tags = doc.tags.split(",");
+		conn.query("SELECT MAX(id) AS max FROM Posts WHERE name = '"+name+"' ",function (err, result) {
+		    	if (err) {
+				throw err;
+				return callback(err);
+			}
+			maxId = result[0].max;
+			var maxid = parseInt(maxId-(page-1)*10);
+			var minid = parseInt(maxId-page*10);
+			sql = "SELECT * FROM Posts WHERE name = '"+name+"' AND id <= "+maxid+" AND id >"+minid+" ORDER BY id DESC;";
+			conn.query(sql, function(err, rows) {
+				if (err) {
+					throw err;
+					return callback(err);
+				} else {
+					 rows.forEach(function (doc) {
+					       doc.post = markdown.toHTML(doc.post);//解析 markdown 为 html
+					       doc.tags = doc.tags.split(",");
+					});
+					callback(null, rows,maxId);//以数组形式返回查询的结果
+				}
 			});
-			callback(null, rows);//以数组形式返回查询的结果
-		}
-	});
+		});
+	}
 };
 
 Post.getOne = function(name, time, title, callback) {
@@ -121,7 +152,7 @@ Post.remove = function(name, time, title, callback) {
 	});
 };
 
-//返回所有标签
+//返回所有标签 unique
 Post.getTags = function(callback) {
 	var sql ="SELECT DISTINCT tags FROM Posts;";
 	var tags = new Array();
@@ -134,7 +165,11 @@ Post.getTags = function(callback) {
 			for (var i  in rows){
 				tags = tags.concat(rows[i].tags.split(","));
 			}
-			callback(null, tags);
+			var arr = [];
+			for (var i = 0, len = tags.length; i < len; i++){
+				! RegExp(tags[i],"g").test(arr.join(","))&&(arr.push(tags[i]));//remove repeatitive tags
+			}
+			callback(null, arr);
 		}
 		else {
 			callback(null);
