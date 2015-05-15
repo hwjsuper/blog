@@ -46,53 +46,55 @@ Post.prototype.save = function(callback) {
 //读取文章及其相关信息
 Post.getTen = function(name, page, callback) {
 	var sql;
-	var maxId;
+	var maxId = 0, maxNum = 0;
 	if(name == null){
-		conn.query("SELECT MAX(id) AS max FROM Posts",function (err, result) {
+		conn.query("SELECT COUNT(*) AS NUM, MAX(id) AS MAX FROM Posts",function (err, result) {
 		    	if (err) {
 				throw err;
 				return callback(err);
 			}
-			maxId = result[0].max;
-			if(maxId == null) maxId = 0;
+			maxId = result[0].MAX;
+			maxNum = result[0].NUM;
+			if(maxNum == null) maxNum = 0;
 			var maxid = parseInt(maxId-(page-1)*10);
 			var minid = parseInt(maxId-page*10);
-			sql = "SELECT * FROM Posts WHERE id <= "+maxid+"  AND id >"+minid+" ORDER BY id DESC;";
+			sql = "SELECT *,left(post,100) AS limitPost FROM Posts WHERE id <= "+maxid+"  AND id >"+minid+" ORDER BY id DESC;";
 			conn.query(sql, function(err, rows) {
 				if (err) {
 					throw err;
 					return callback(err);
 				} else {
 					 rows.forEach(function (doc) {
-					       doc.post = markdown.toHTML(doc.post);//解析 markdown 为 html
+					       doc.post = markdown.toHTML(doc.limitPost);//解析 markdown 为 html
 					       doc.tags = doc.tags.split(",");
 					});
-					 console.log(maxId);
-					callback(null, rows,maxId);//以数组形式返回查询的结果
+					callback(null, rows,maxNum);//以数组形式返回查询的结果
 				}
 			});
 		});
 	}
 	else {
-		conn.query("SELECT MAX(id) AS max FROM Posts WHERE name = '"+name+"' ",function (err, result) {
+		conn.query("SELECT COUNT(*) AS NUM, MAX(id) AS max FROM Posts WHERE name = '"+name+"' ",function (err, result) {
 		    	if (err) {
 				throw err;
 				return callback(err);
 			}
 			maxId = result[0].max;
+			maxNum = result[0].NUM;
+			if(maxNum == null) maxNum = 0;
 			var maxid = parseInt(maxId-(page-1)*10);
 			var minid = parseInt(maxId-page*10);
-			sql = "SELECT * FROM Posts WHERE name = '"+name+"' AND id <= "+maxid+" AND id >"+minid+" ORDER BY id DESC;";
+			sql = "SELECT *,left(post,100) AS limitPost FROM Posts WHERE name = '"+name+"' AND id <= "+maxid+" AND id >"+minid+" ORDER BY id DESC;";
 			conn.query(sql, function(err, rows) {
 				if (err) {
 					throw err;
 					return callback(err);
 				} else {
 					 rows.forEach(function (doc) {
-					       doc.post = markdown.toHTML(doc.post);//解析 markdown 为 html
+					       doc.post = markdown.toHTML(doc.limitPost+"......");//解析 markdown 为 html
 					       doc.tags = doc.tags.split(",");
 					});
-					callback(null, rows,maxId);//以数组形式返回查询的结果
+					callback(null, rows,maxNum);//以数组形式返回查询的结果
 				}
 			});
 		});

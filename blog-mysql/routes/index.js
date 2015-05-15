@@ -14,7 +14,7 @@ app.get('/', function(req, res) {
 		if (err) {
 			posts = [];
 		}
-		res.render('index', {
+		res.render('outline', {
 			title: '主页',
 			posts: posts,
 			page: page,
@@ -203,7 +203,8 @@ app.get('/u/:name', function(req, res) {
 				req.flash('error', err);
 				return res.redirect('/');
 			}
-			res.render('user', {
+			console.log(total);
+			res.render('outline', {
 				title: user.name,
 				posts: posts,
 				page: page,
