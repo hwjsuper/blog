@@ -1,5 +1,5 @@
 var conn = require('./db');
-var markdown = require('markdown').markdown;
+//var markdown = require('markdown').markdown;
 
 function Post(name, title, tags, post) {
 	this.name = name;
@@ -65,7 +65,8 @@ Post.getTen = function(name, page, callback) {
 					return callback(err);
 				} else {
 					 rows.forEach(function (doc) {
-					       doc.post = markdown.toHTML(doc.limitPost);//解析 markdown 为 html
+					 	doc.post = doc.limitPost;
+					       //doc.post = markdown.toHTML(doc.limitPost);//解析 markdown 为 html
 					       doc.tags = doc.tags.split(",");
 					});
 					callback(null, rows,maxNum);//以数组形式返回查询的结果
@@ -91,7 +92,8 @@ Post.getTen = function(name, page, callback) {
 					return callback(err);
 				} else {
 					 rows.forEach(function (doc) {
-					       doc.post = markdown.toHTML(doc.limitPost+"......");//解析 markdown 为 html
+					 	doc.post = doc.limitPost;
+					       //doc.post = markdown.toHTML(doc.limitPost);//解析 markdown 为 html
 					       doc.tags = doc.tags.split(",");
 					});
 					callback(null, rows,maxNum);//以数组形式返回查询的结果
@@ -109,7 +111,7 @@ Post.getOne = function(name, time, title, callback) {
 			return callback(err);
 		} 
 		else if (rows.length != 0) {
-			rows[0].post = markdown.toHTML(rows[0].post);//解析 markdown 为 html
+			//rows[0].post = markdown.toHTML(rows[0].post);//解析 markdown 为 html
 			rows[0].tags = rows[0].tags.split(",");
 			rows[0].pv = rows[0].pv+1;
 			var sql = "UPDATE Posts SET pv = pv+1 WHERE name = '"+name+"' AND time = '"+time+"' AND title = '"+title+"';"
