@@ -7,6 +7,16 @@ var express = require('express');
 var app = express.Router();
 
 app.get('/', function(req, res) {
+  res.render('index');
+});
+app.get('/about', function(req, res) {
+  res.render('about');
+});
+app.get('/portfolio', function(req, res) {
+  res.render('portfolio');
+});
+
+app.get('/blog', function(req, res) {
 	//判断是否是第一页，并把请求的页数转换成 number 类型
 	var page = req.query.p ? parseInt(req.query.p) : 1;
 	//查询并返回第 page 页的 10 篇文章
@@ -56,7 +66,7 @@ app.post('/reg', function(req, res) {
 	User.get(newUser.name, function(err, user) {
 		if (err) {
 			req.flash('error', err);
-			return res.redirect('/');
+			return res.redirect('/blog');
 		}
 		if (user) {
 			req.flash('error', '用户已存在!');
@@ -69,7 +79,7 @@ app.post('/reg', function(req, res) {
 			}
 			req.session.user = user;
 			req.flash('success', '注册成功!');
-			res.redirect('/');
+			res.redirect('/blog');
 		});
 	});
 });
@@ -99,7 +109,7 @@ app.post('/login', function(req, res) {
 		}
 		req.session.user = user;
 		req.flash('success', '登陆成功!');
-		res.redirect('/');
+		res.redirect('/blog');
 	});
 });
 
@@ -125,10 +135,10 @@ app.post('/post', function(req, res) {
 		post.save(function(err) {
 			if (err) {
 				req.flash('error', err);
-				return res.redirect('/');
+				return res.redirect('/blog');
 			}
 			req.flash('success', '发布成功!');
-			res.redirect('/'); //发表成功跳转到主页
+			res.redirect('blog'); //发表成功跳转到主页
 		});
 	}
 });
@@ -137,7 +147,7 @@ app.get('/logout', checkLogin);
 app.get('/logout', function(req, res) {
 	req.session.user = null;
 	req.flash('success', '登出成功!');
-	res.redirect('/');
+	res.redirect('/blog');
 });
 
 app.get('/upload', checkLogin);
@@ -160,7 +170,7 @@ app.get('/archive', function (req, res) {
   Post.getArchive(function (err, posts) {
     if (err) {
       req.flash('error', err); 
-      return res.redirect('/');
+      return res.redirect('/blog');
     }
     res.render('archive', {
       title: '归档',
@@ -176,7 +186,7 @@ app.get('/search', function (req, res) {
   Post.search(req.query.keyword, function (err, posts) {
     if (err) {
       req.flash('error', err); 
-      return res.redirect('/');
+      return res.redirect('/blog');
     }
     res.render('archive', {
       title: "SEARCH:" + req.query.keyword,
@@ -193,7 +203,7 @@ app.get('/u/:name', function(req, res) {
 	User.get(req.params.name, function(err, user) {
 		if (!user) {
 			req.flash('error', '用户不存在!');
-			return res.redirect('/'); //用户不存在则跳转到主页
+			return res.redirect('/blog'); //用户不存在则跳转到主页
 		}
 		//判断是否是第一页，并把请求的页数转换成 number 类型
 		var page = req.query.p ? parseInt(req.query.p) : 1;
@@ -201,7 +211,7 @@ app.get('/u/:name', function(req, res) {
 		Post.getTen(user.name, page, function(err, posts,total) {
 			if (err) {
 				req.flash('error', err);
-				return res.redirect('/');
+				return res.redirect('/blog');
 			}
 			console.log(total);
 			res.render('outline', {
@@ -222,12 +232,12 @@ app.get('/u/:name/:time/:title', function(req, res) {
 	Post.getOne(req.params.name, req.params.time, req.params.title, function(err, post) {
 		if (err) {
 			req.flash('error', err);
-			return res.redirect('/');
+			return res.redirect('/blog');
 		}
 		Comment.get(post.id, function(err, comments) {
 			if (err) {
 				req.flash('error', err);
-				return res.redirect('/');
+				return res.redirect('/blog');
 			}
 			res.render('article', {
 				title: req.params.title,
@@ -256,7 +266,7 @@ app.post('/u/:name/:time/:title', function(req, res) {
 		Post.getOne(req.params.name, req.params.time, req.params.title, function(err, post) {
 			if (err) {
 				req.flash('error', err);
-				return res.redirect('/');
+				return res.redirect('/blog');
 			} else {
 				var id = post.id;
 				var newComment = new Comment(id, name, email, time, content);
@@ -314,7 +324,7 @@ app.get('/remove/:name/:time/:title', function(req, res) {
 			return res.redirect('back');
 		}
 		req.flash('success', '删除成功!');
-		res.redirect('/');
+		res.redirect('/blog');
 	});
 });
 
@@ -322,7 +332,7 @@ app.get('/tags', function (req, res) {
   Post.getTags(function (err, tags) {
     if (err) {
       req.flash('error', err); 
-      return res.redirect('/');
+      return res.redirect('/blog');
     }
     res.render('tags', {
       title: '标签',
@@ -338,7 +348,7 @@ app.get('/tags/:tag', function (req, res) {
   Post.getTag(req.params.tag, function (err, posts) {
     if (err) {
       req.flash('error',err); 
-      return res.redirect('/');
+      return res.redirect('/blog');
     }
     res.render('archive', {
       title: 'TAG:' + req.params.tag,

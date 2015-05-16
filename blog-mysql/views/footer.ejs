@@ -1,3 +1,59 @@
-</article>
+        </div>
+        </div>
+        <div class="am-u-md-3 am-u-md-pull-9 blog-sidebar">
+            <div class="am-offcanvas" id="sidebar">
+                <div class="am-offcanvas-bar">
+                    <ul class="am-nav mynav">
+                        <li class="am-nav-header">Hello, I am Hu Wenjia</li>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/about">About</a></li>
+                        <li><a href="/portfolio">Portfolio</a></li>
+                        <li class="am-active"><a href="/blog">Blog</a></li>
+                    </ul>
+                    <ul class="am-nav blog-nav">
+                        <li><a title="归档" href="/archive">归档</a></li>
+                        <li><a title="标签" href="/tags">标签</a></li>
+                        <% if (user) { %>
+                        <li><a title="上传" href="/upload">上传</a></li>
+                        <li><a title="发表" href="/post">发表</a></li>
+                        <li><a title="登出" href="/logout">登出</a></li>
+                        <% } else { %>
+                        <li><a title="登录" href="/login">登录</a></li>
+                        <li><a title="注册" href="/reg">注册</a></li>
+                        <% } %>
+                        <li>
+                            <form action="/search" method="GET" class="cse-form">
+                                <input type="text" class="am-form-field am-round am-input-sm blog-search" required="" name="keyword" placeholder="搜索" autocomplete="off">
+                                <button><span class="am-icon-search"></span></button>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <a href="#sidebar" class="am-btn am-btn-sm am-icon-bars am-show-sm-only blog-slide-button" data-am-offcanvas="{target: '#sidebar', effect: 'push'}"><span class="am-sr-only">侧栏导航</span></a>
+    </div>
+    <footer class="blog-footer">
+        <p>
+            © Copyright HWJ.
+        </p>
+        <div data-am-widget="gotop" class="am-gotop am-gotop-fixed">
+            <a href="#top" title="">
+                <i class="am-icon-btn am-icon-arrow-up am-success"></i>
+            </a>
+        </div>
+    </footer>
+    <!--[if lt IE 9]>
+<script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+<script src="/assets/js/polyfill/rem.min.js"></script>
+<script src="/assets/js/polyfill/respond.min.js"></script>
+<script src="/assets/js/amazeui.legacy.js"></script>
+<![endif]-->
+    <!--[if (gte IE 9)|!(IE)]><!-->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/amazeui.min.js"></script>
+    <!--<![endif]-->
 </body>
+
 </html>

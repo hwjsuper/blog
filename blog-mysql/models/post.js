@@ -58,7 +58,7 @@ Post.getTen = function(name, page, callback) {
 			if(maxNum == null) maxNum = 0;
 			var maxid = parseInt(maxId-(page-1)*10);
 			var minid = parseInt(maxId-page*10);
-			sql = "SELECT *,left(post,100) AS limitPost FROM Posts WHERE id <= "+maxid+"  AND id >"+minid+" ORDER BY id DESC;";
+			sql = "SELECT *,left(post,250) AS limitPost FROM Posts WHERE id <= "+maxid+"  AND id >"+minid+" ORDER BY id DESC;";
 			conn.query(sql, function(err, rows) {
 				if (err) {
 					throw err;

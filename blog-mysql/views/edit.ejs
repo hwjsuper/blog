@@ -6,7 +6,7 @@
   <input type="text" name="tags" value="<% for(var i in post.tags) { %><% if (post.tags[i]) { %><%= post.tags[i]+',' %><% } %><% } %>"/><br />
 
   正文：<br />
-  <textarea name="post" rows="20" cols="100"><%= post.post %></textarea><br />
-  <input type="submit" value="保存修改" />
+  <textarea name="post" rows="20" cols="100"><%= post.post %></textarea>
+  <input type="submit" value="保存修改" class="am-btn am-btn-primary am-btn-sm" />
 </form>
 <%- include footer %>

@@ -1,10 +1,40 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8" />
-<title>Blog</title>
-<link rel="stylesheet" href="/stylesheets/style.css">
-<script charset="utf-8" src="/kindeditor/kindeditor-min.js"></script>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Blog</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <link rel="alternate icon" type="image/png" href="/assets/i/favicon.png">
+    <link rel="stylesheet" href="/assets/css/amazeui.min.css" />
+    <link rel="stylesheet" href="/assets/css/app.css" />
+    <style type="text/css">
+    @media only screen and (min-width: 641px) {
+        .mynav {
+            display: none;
+        }
+    }
+    
+    @media only screen and (max-width: 640px) {
+        .navbar {
+            display: none;
+        }
+    }
+    .background {
+        background: url('/assets/i/bg3.jpg');
+        background-size: 100%;
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-color: #000;
+        background-attachment: fixed;
+        background-size: cover;
+    }
+    </style>
+    <script charset="utf-8" src="/kindeditor/kindeditor-min.js"></script>
 <script charset="utf-8" src="/kindeditor/lang/zh_CN.js"></script>
 <script>
 var editor;
@@ -20,32 +50,31 @@ KindEditor.ready(function(K) {
 });
 </script>
 </head>
-<body>
 
-<header>
-<h1><%= title %></h1>
-</header>
-
-<nav>
-<span><a title="主页" href="/">主页</a></span>
-<span><a title="归档" href="/archive">归档</a></span>
-<span><a title="标签" href="/tags">标签</a></span>
-<% if (user) { %>
-  <span><a title="上传" href="/upload">上传</a></span>
-  <span><a title="发表" href="/post">发表</a></span>
-  <span><a title="登出" href="/logout">登出</a></span>
-<% } else { %>
-  <span><a title="登录" href="/login">登录</a></span>
-  <span><a title="注册" href="/reg">注册</a></span>
-<% } %>
-<span><form action="/search" method="GET"><input type="text" name="keyword" placeholder="SEARCH" class="search" /></form></span>
-</nav>
-
-<article>
-
-<% if (success) { %>
-  <div><%= success %></div>
-<% } %>
-<% if (error) { %>
-  <div><%= error %> </div>
-<% } %>
+<body class="background">
+    <header class="navbar">
+        <div class="am-container">
+            <div class="am-topbar-brand">
+                <a href="/">Hello, I am Hu Wenjia</a>
+            </div>
+            <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-secondary am-show-sm-only" data-am-collapse="{target: '#collapse-head'}"><span class="am-sr-only">导航切换</span> <span class="am-icon-bars"></span></button>
+            <div class="am-collapse am-topbar-collapse" id="collapse-head">
+                <ul class="am-nav am-nav-pills am-topbar-right">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/portfolio">Portfolio</a></li>
+                    <li class="am-active"><a href="/blog">Blog</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <div class="am-g blog-g-fixed">
+    <div class="am-u-md-9 am-u-md-push-3 blog-container">
+        <h1><%= title %></h1>
+        <% if (success) { %>
+        <div><%= success %></div>
+        <% } %>
+        <% if (error) { %>
+        <div><%= error %> </div>
+        <% } %>
+        <div class="am-u-lg-11 blog-main">

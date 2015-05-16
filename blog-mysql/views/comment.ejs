@@ -1,11 +1,20 @@
-<br />
-
-
+<hr/>
+<ul class="am-comments-list">
 <% for (var i in comments){ %>
-  <p><%= comments[i].name %></a>
-  <span class="info"> 回复于 <%= comments[i].time %></span></p>
-  <p><%- comments[i].post %></p>
+  <li class="am-comment">
+    <div class="am-comment-main">
+      <header class="am-comment-hd">
+        <div class="am-comment-meta">
+          <%= comments[i].name %> 评论于 <%= comments[i].time %>
+        </div>
+      </header>
+      <div class="am-comment-bd">
+       <%- comments[i].post %>
+      </div>
+    </div>
+  </li>
 <% } %>
+</ul>
 
 <form method="post">
 <% if (user) { %>
@@ -15,6 +24,6 @@
   姓名：<input type="text" name="name" /><br />
   邮箱：<input type="text" name="email" /><br />
 <% } %>
-  <textarea name="content" rows="5" cols="80"></textarea><br />
-  <input type="submit" value="留言" />
+  <textarea name="content" rows="5" cols="80"></textarea>
+  <input type="submit" value="留言" class="am-btn am-btn-primary am-btn-sm" />
 </form>
