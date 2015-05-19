@@ -1,4 +1,5 @@
 <%- include header %>
+<div class="am-u-lg-11 blog-main">
 <p>
 <% if (user && (user.name == post.name)) { %>
   <span><a class="edit" href="/edit/<%= post.name %>/<%= post.time %>/<%= post.title %>">编辑</a></span>
@@ -24,4 +25,5 @@
   <% } %>
 </p>
 <%- include comment %>
+</div>
 <%- include footer %>

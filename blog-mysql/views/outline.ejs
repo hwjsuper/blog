@@ -1,11 +1,10 @@
 <%- include header %>
+<div class="am-u-lg-11">
   <% posts.forEach(function (post, index) { %>
     <article class="blog-main">
-
       <h3 class="am-article-title blog-title">
         <a href="/u/<%= post.name %>/<%= post.time%>/<%= post.title %>"><%= post.title %></a>
       </h3>
-
       <h4 class="am-article-meta blog-meta">
         作者：<span class="author"><a href="/u/<%= post.name %>"><%= post.name %></a></span> | 
         日期：<%= post.time %> | 
@@ -16,19 +15,14 @@
           <% } %>
         <% } %>
       </h4>
-
       <div class="blog-content">
         <%- post.post %>
       </div>
-
     </article>
-
     <hr class="am-article-divider blog-hr">
-
   <% }) %>
-
   <%- include paging %>
-
+  </div>
 <%- include footer %>
 
         

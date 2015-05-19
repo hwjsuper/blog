@@ -58,7 +58,7 @@ Post.getTen = function(name, page, callback) {
 			if(maxNum == null) maxNum = 0;
 			var maxid = parseInt(maxId-(page-1)*10);
 			var minid = parseInt(maxId-page*10);
-			sql = "SELECT *,left(post,250) AS limitPost FROM Posts WHERE id <= "+maxid+"  AND id >"+minid+" ORDER BY id DESC;";
+			sql = "SELECT *,left(post,300) AS limitPost FROM Posts WHERE id <= "+maxid+"  AND id >"+minid+" ORDER BY id DESC;";
 			conn.query(sql, function(err, rows) {
 				if (err) {
 					throw err;
@@ -85,7 +85,7 @@ Post.getTen = function(name, page, callback) {
 			if(maxNum == null) maxNum = 0;
 			var maxid = parseInt(maxId-(page-1)*10);
 			var minid = parseInt(maxId-page*10);
-			sql = "SELECT *,left(post,100) AS limitPost FROM Posts WHERE name = '"+name+"' AND id <= "+maxid+" AND id >"+minid+" ORDER BY id DESC;";
+			sql = "SELECT *,left(post,300) AS limitPost FROM Posts WHERE name = '"+name+"' AND id <= "+maxid+" AND id >"+minid+" ORDER BY id DESC;";
 			conn.query(sql, function(err, rows) {
 				if (err) {
 					throw err;
@@ -195,7 +195,7 @@ Post.getTags = function(callback) {
 		} 
 		else if (rows.length != 0) {
 			for (var i  in rows){
-				tags = tags.concat(rows[i].tags.split(","));
+				tags = tags.concat(rows[i].tags.replace(/[ ]/g,"").split(","));//remove space
 			}
 			var arr = [];
 			for (var i = 0, len = tags.length; i < len; i++){

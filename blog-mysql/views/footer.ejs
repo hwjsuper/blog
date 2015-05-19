@@ -1,5 +1,4 @@
         </div>
-        </div>
         <div class="am-u-md-3 am-u-md-pull-9 blog-sidebar">
             <div class="am-offcanvas" id="sidebar">
                 <div class="am-offcanvas-bar">
@@ -11,6 +10,7 @@
                         <li class="am-active"><a href="/blog">Blog</a></li>
                     </ul>
                     <ul class="am-nav blog-nav">
+                        <li><a title="主页" href="/blog">主页</a></li>
                         <li><a title="归档" href="/archive">归档</a></li>
                         <li><a title="标签" href="/tags">标签</a></li>
                         <% if (user) { %>
@@ -22,9 +22,13 @@
                         <li><a title="注册" href="/reg">注册</a></li>
                         <% } %>
                         <li>
-                            <form action="/search" method="GET" class="cse-form">
-                                <input type="text" class="am-form-field am-round am-input-sm blog-search" required="" name="keyword" placeholder="搜索" autocomplete="off">
-                                <button><span class="am-icon-search"></span></button>
+                            <form action="/search" method="GET" class="search-form">
+                            <div class="am-input-group">
+                              <span class="am-input-group-btn">
+                                <button class="am-btn am-btn-sm am-round btn-search" type="submit"><span class="am-icon-search"></span> </button>
+                              </span>
+                              <input type="text" class="am-form-field am-round am-input-sm blog-search" required="" name="keyword" autocomplete="off">
+                            </div>
                             </form>
                         </li>
                     </ul>
@@ -38,22 +42,26 @@
             © Copyright HWJ.
         </p>
         <div data-am-widget="gotop" class="am-gotop am-gotop-fixed">
-            <a href="#top" title="">
-                <i class="am-icon-btn am-icon-arrow-up am-success"></i>
+            <a href="#top" title="回到顶部">
+                <i class="am-icon-arrow-up am-success"></i>
             </a>
         </div>
     </footer>
     <!--[if lt IE 9]>
-<script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
-<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
-<script src="/assets/js/polyfill/rem.min.js"></script>
-<script src="/assets/js/polyfill/respond.min.js"></script>
-<script src="/assets/js/amazeui.legacy.js"></script>
-<![endif]-->
+    <script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+    <script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+    <script src="/assets/js/polyfill/rem.min.js"></script>
+    <script src="/assets/js/polyfill/respond.min.js"></script>
+    <script src="/assets/js/amazeui.legacy.js"></script>
+    <![endif]-->
     <!--[if (gte IE 9)|!(IE)]><!-->
     <script src="/assets/js/jquery.min.js"></script>
     <script src="/assets/js/amazeui.min.js"></script>
     <!--<![endif]-->
+    <script type="text/javascript">
+        var iHeight = $(window).height()-110;
+        $(".blog-container").css("min-height", iHeight);
+    </script>
 </body>
 
 </html>

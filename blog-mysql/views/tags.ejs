@@ -1,5 +1,7 @@
 <%- include header %>
+<div class="am-u-lg-11 blog-main">
 <% for (var i in tags) { %>
-<a class="am-badge am-badge-success am-text-lg" href="/tags/<%= tags[i] %>"><%= tags[i] %></a>
+<a class="am-badge am-badge-success am-text-lg badge" href="/tags/<%= tags[i] %>"><%= tags[i] %></a>
 <% } %>
+</div>
 <%- include footer %>

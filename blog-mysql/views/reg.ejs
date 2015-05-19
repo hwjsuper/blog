@@ -1,11 +1,25 @@
 <%- include header %>
+<div class="am-u-lg-11 blog-main">
 <form method="post" class="am-form am-u-md-6 am-u-sm-centered">
     <fieldset class="am-form-set">
-        <input type="text" name="name"  placeholder="取个名字"/>
-        <input type="password" name="password"  placeholder="设个密码"/>
-        <input type="password" name="password-repeat"  placeholder="确认密码"/>
-        <input type="email" name="email"  placeholder="填下邮箱"/>
+        <div class="am-input-group">
+          <span class="am-input-group-label"><i class="am-icon-user am-icon-fw"></i></span>
+          <input type="text" class="am-form-field" name="name" placeholder="取个名字">
+        </div>
+        <div class="am-input-group">
+          <span class="am-input-group-label"><i class="am-icon-lock am-icon-fw"></i></span>
+          <input type="password" class="am-form-field" name="password" placeholder="设个密码">
+        </div>
+        <div class="am-input-group">
+          <span class="am-input-group-label"><i class="am-icon-lock am-icon-fw"></i></span>
+          <input type="password" class="am-form-field" name="password-repeat" placeholder="确认密码">
+        </div>
+        <div class="am-input-group">
+          <span class="am-input-group-label"><i class="am-icon-envelope-o am-icon-fw"></i></span>
+          <input type="email" class="am-form-field" name="email" placeholder="填下邮箱">
+        </div>  
     </fieldset>
     <button type="submit" class="am-btn am-btn-primary am-btn-block">注册个账号</button>
 </form>
+</div>
 <%- include footer %>

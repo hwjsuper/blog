@@ -1,4 +1,5 @@
 <%- include header %>
+<div class="am-u-lg-11 blog-main">
 <form method="post">
   标题：<br />
   <input type="text" name="title" value="<%= post.title %>" /><br />
@@ -9,4 +10,5 @@
   <textarea name="post" rows="20" cols="100"><%= post.post %></textarea>
   <input type="submit" value="保存修改" class="am-btn am-btn-primary am-btn-sm" />
 </form>
+</div>
 <%- include footer %>
