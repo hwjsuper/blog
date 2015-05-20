@@ -22,14 +22,14 @@ CREATE DATABASE blog CHARACTER SET 'utf8' COLLATE 'utf8_general_ci';
 
 use blog
 
-CREATE TABLE Users (
+CREATE TABLE blog_Users (
  id int(10)  PRIMARY KEY NOT NULL AUTO_INCREMENT,
  name varchar(20) NOT NULL,
  password varchar(50) NOT NULL,
  email varchar(50) 
  )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE Posts (
+CREATE TABLE blog_Posts (
  id int(10) PRIMARY KEY NOT NULL AUTO_INCREMENT,
  name varchar(20) NOT NULL,
  time varchar(40) NOT NULL,
@@ -39,7 +39,7 @@ CREATE TABLE Posts (
  post text NOT NULL
  )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE Comments (
+CREATE TABLE blog_Comments (
  id int(10) PRIMARY KEY NOT NULL AUTO_INCREMENT,
  A_id int(10) NOT NULL,
  name varchar(20) NOT NULL,
