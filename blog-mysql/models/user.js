@@ -17,7 +17,7 @@ User.prototype.save = function(callback) {
 		password: this.password,
 		email: this.email
 	};
-	var sql = "INSERT INTO Users (name,password,email) VALUES('"+user.name+"', '"+user.password+"', '"+user.email+"');"
+	var sql = "INSERT INTO blog_Users (name,password,email) VALUES('"+user.name+"', '"+user.password+"', '"+user.email+"');"
 	conn.query(sql, function(err, rows) {
 		if (err) {
 			throw err;
@@ -30,7 +30,7 @@ User.prototype.save = function(callback) {
 //读取用户信息
 User.get = function(name, callback) {
 	// conn.connect();
-	var sql = "SELECT * FROM Users WHERE name = '" + name + "';"
+	var sql = "SELECT * FROM blog_Users WHERE name = '" + name + "';"
 	conn.query(sql, function(err, rows) {
 		if (err) {
 			throw err;

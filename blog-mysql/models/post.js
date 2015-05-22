@@ -32,7 +32,7 @@ Post.prototype.save = function(callback) {
 		post: this.post
 	};
 	// conn.connect();
-	var sql = "INSERT INTO Posts (name,time,title,tags,pv,post) VALUES ('"+post.name+"','"+post.time.minute+"', '"+post.title+"', '"+post.tags+"', "+post.pv+", '"+post.post+"');"
+	var sql = "INSERT INTO blog_Posts (name,time,title,tags,pv,post) VALUES ('"+post.name+"','"+post.time.minute+"', '"+post.title+"', '"+post.tags+"', "+post.pv+", '"+post.post+"');"
 	conn.query(sql, function(err, rows) {
 		if (err) {
 			throw err;
@@ -48,7 +48,7 @@ Post.getTen = function(name, page, callback) {
 	var sql;
 	var maxId = 0, maxNum = 0;
 	if(name == null){
-		conn.query("SELECT COUNT(*) AS NUM, MAX(id) AS MAX FROM Posts",function (err, result) {
+		conn.query("SELECT COUNT(*) AS NUM, MAX(id) AS MAX FROM blog_Posts",function (err, result) {
 		    	if (err) {
 				throw err;
 				return callback(err);
@@ -58,7 +58,7 @@ Post.getTen = function(name, page, callback) {
 			if(maxNum == null) maxNum = 0;
 			var maxid = parseInt(maxId-(page-1)*10);
 			var minid = parseInt(maxId-page*10);
-			sql = "SELECT *,left(post,300) AS limitPost FROM Posts WHERE id <= "+maxid+"  AND id >"+minid+" ORDER BY id DESC;";
+			sql = "SELECT *,left(post,300) AS limitPost FROM blog_Posts WHERE id <= "+maxid+"  AND id >"+minid+" ORDER BY id DESC;";
 			conn.query(sql, function(err, rows) {
 				if (err) {
 					throw err;
@@ -75,7 +75,7 @@ Post.getTen = function(name, page, callback) {
 		});
 	}
 	else {
-		conn.query("SELECT COUNT(*) AS NUM, MAX(id) AS max FROM Posts WHERE name = '"+name+"' ",function (err, result) {
+		conn.query("SELECT COUNT(*) AS NUM, MAX(id) AS max FROM blog_Posts WHERE name = '"+name+"' ",function (err, result) {
 		    	if (err) {
 				throw err;
 				return callback(err);
@@ -85,7 +85,7 @@ Post.getTen = function(name, page, callback) {
 			if(maxNum == null) maxNum = 0;
 			var maxid = parseInt(maxId-(page-1)*10);
 			var minid = parseInt(maxId-page*10);
-			sql = "SELECT *,left(post,300) AS limitPost FROM Posts WHERE name = '"+name+"' AND id <= "+maxid+" AND id >"+minid+" ORDER BY id DESC;";
+			sql = "SELECT *,left(post,300) AS limitPost FROM blog_Posts WHERE name = '"+name+"' AND id <= "+maxid+" AND id >"+minid+" ORDER BY id DESC;";
 			conn.query(sql, function(err, rows) {
 				if (err) {
 					throw err;
@@ -104,7 +104,7 @@ Post.getTen = function(name, page, callback) {
 };
 
 Post.getOne = function(name, time, title, callback) {
-	var sql ="SELECT * FROM Posts WHERE name = '"+name+"' AND time = '"+time+"' AND title = '"+title+"';";
+	var sql ="SELECT * FROM blog_Posts WHERE name = '"+name+"' AND time = '"+time+"' AND title = '"+title+"';";
 	conn.query(sql, function(err, rows) {
 		if (err) {
 			throw err;
@@ -114,7 +114,7 @@ Post.getOne = function(name, time, title, callback) {
 			//rows[0].post = markdown.toHTML(rows[0].post);//解析 markdown 为 html
 			rows[0].tags = rows[0].tags.split(",");
 			rows[0].pv = rows[0].pv+1;
-			var sql = "UPDATE Posts SET pv = pv+1 WHERE name = '"+name+"' AND time = '"+time+"' AND title = '"+title+"';"
+			var sql = "UPDATE blog_Posts SET pv = pv+1 WHERE name = '"+name+"' AND time = '"+time+"' AND title = '"+title+"';"
 			conn.query(sql, function(err) {
 				if (err) {
 					throw err;
@@ -132,7 +132,7 @@ Post.getOne = function(name, time, title, callback) {
 //返回所有文章归档信息
 Post.getArchive = function(callback) {
 	var self = this;
-	sql = "SELECT name,time,title FROM Posts ORDER BY id DESC;";
+	sql = "SELECT name,time,title FROM blog_Posts ORDER BY id DESC;";
 	conn.query(sql, function(err, rows) {
 		if (err) {
 			throw err;
@@ -148,7 +148,7 @@ Post.getArchive = function(callback) {
 
 //返回原始发表的内容（markdown 格式）
 Post.edit = function(name, time, title, callback) {
-	var sql ="SELECT * FROM Posts WHERE name = '"+name+"' AND time = '"+time+"' AND title = '"+title+"';";
+	var sql ="SELECT * FROM blog_Posts WHERE name = '"+name+"' AND time = '"+time+"' AND title = '"+title+"';";
 	conn.query(sql, function(err, rows) {
 		if (err) {
 			throw err;
@@ -162,7 +162,7 @@ Post.edit = function(name, time, title, callback) {
 
 //更新一篇文章及其相关信息
 Post.update = function(name, time, title, tags, post, callback) {
-	var sql = "UPDATE Posts SET title = '"+title+"', tags = '"+tags+"', post = '"+post+"' WHERE name = '"+name+"' AND time = '"+time+"';";
+	var sql = "UPDATE blog_Posts SET title = '"+title+"', tags = '"+tags+"', post = '"+post+"' WHERE name = '"+name+"' AND time = '"+time+"';";
 	conn.query(sql, function(err, rows) {
 		if (err) {
 			throw err;
@@ -174,7 +174,7 @@ Post.update = function(name, time, title, tags, post, callback) {
 
 //删除一篇文章
 Post.remove = function(name, time, title, callback) {
-	var sql = "DELETE FROM Posts WHERE name = '"+name+"' AND time = '"+time+"' AND title = '"+title+"';";
+	var sql = "DELETE FROM blog_Posts WHERE name = '"+name+"' AND time = '"+time+"' AND title = '"+title+"';";
 	conn.query(sql, function(err, rows) {
 		if (err) {
 			throw err;
@@ -186,7 +186,7 @@ Post.remove = function(name, time, title, callback) {
 
 //返回所有标签 unique
 Post.getTags = function(callback) {
-	var sql ="SELECT DISTINCT tags FROM Posts;";
+	var sql ="SELECT DISTINCT tags FROM blog_Posts;";
 	var tags = new Array();
 	conn.query(sql, function(err, rows) {
 		if (err) {
@@ -212,7 +212,7 @@ Post.getTags = function(callback) {
 //返回含有特定标签的所有文章
 Post.getTag = function(tag, callback) {
 	var self = this;
-	var sql ="SELECT * FROM Posts WHERE tags like '%"+tag+"%' ORDER BY id DESC;";
+	var sql ="SELECT * FROM blog_Posts WHERE tags like '%"+tag+"%' ORDER BY id DESC;";
 	conn.query(sql, function(err, rows) {
 		if (err) {
 			throw err;
@@ -248,7 +248,7 @@ Post.formatTime = function(time){
 //返回通过标题关键字查询的所有文章信息
 Post.search = function(keyword, callback) {
 	var self = this;
-	var sql ="SELECT * FROM Posts WHERE title like '%"+keyword+"%' ORDER BY id DESC;";
+	var sql ="SELECT * FROM blog_Posts WHERE title like '%"+keyword+"%' ORDER BY id DESC;";
 	conn.query(sql, function(err, rows) {
 		if (err) {
 			throw err;
@@ -259,31 +259,4 @@ Post.search = function(keyword, callback) {
 		});
 		callback(null, rows);
 	});
-  // mongodb.open(function (err, db) {
-  //   if (err) {
-  //     return callback(err);
-  //   }
-  //   db.collection('posts', function (err, collection) {
-  //     if (err) {
-  //       mongodb.close();
-  //       return callback(err);
-  //     }
-  //     var pattern = new RegExp(keyword, "i");
-  //     collection.find({
-  //       "title": pattern
-  //     }, {
-  //       "name": 1,
-  //       "time": 1,
-  //       "title": 1
-  //     }).sort({
-  //       time: -1
-  //     }).toArray(function (err, docs) {
-  //       mongodb.close();
-  //       if (err) {
-  //        return callback(err);
-  //       }
-  //       callback(null, docs);
-  //     });
-  //   });
-  // });
 };

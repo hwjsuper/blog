@@ -18,7 +18,7 @@ Comment.prototype.save = function(callback) {
     email = this.email,
     time = this.time,
     post = this.post;
-  var sql = "INSERT INTO Comments (A_id,name,email,time,post) VALUES ('" +A_id+ "', '" +name + "', '" +email + "','" +time + "', '" +post + "');"
+  var sql = "INSERT INTO blog_Comments (A_id,name,email,time,post) VALUES ('" +A_id+ "', '" +name + "', '" +email + "','" +time + "', '" +post + "');"
   conn.query(sql, function(err, rows) {
     if (err) {
       throw err;
@@ -29,7 +29,7 @@ Comment.prototype.save = function(callback) {
 };
 //get留言信息
 Comment.get = function(id, callback) {
-  var sql ="SELECT * FROM Comments WHERE A_id = '"+id+"' ORDER BY id DESC;";
+  var sql ="SELECT * FROM blog_Comments WHERE A_id = '"+id+"' ORDER BY id DESC;";
   conn.query(sql, function(err, rows) {
     if (err) {
       throw err;
