@@ -58,16 +58,17 @@ Post.getTen = function(name, page, callback) {
 			if(maxNum == null) maxNum = 0;
 			var maxid = parseInt(maxId-(page-1)*10);
 			var minid = parseInt(maxId-page*10);
-			sql = "SELECT *,left(post,300) AS limitPost FROM blog_Posts WHERE id <= "+maxid+"  AND id >"+minid+" ORDER BY id DESC;";
+			sql = "SELECT * FROM blog_Posts WHERE id <= "+maxid+"  AND id >"+minid+" ORDER BY id DESC;";
+			//sql = "SELECT *,left(post,300) AS limitPost FROM blog_Posts WHERE id <= "+maxid+"  AND id >"+minid+" ORDER BY id DESC;";
 			conn.query(sql, function(err, rows) {
 				if (err) {
 					throw err;
 					return callback(err);
 				} else {
 					 rows.forEach(function (doc) {
-					 	doc.post = doc.limitPost;
+					       //doc.post = doc.limitPost;
 					       //doc.post = markdown.toHTML(doc.limitPost);//解析 markdown 为 html
-					       doc.tags = doc.tags.split(",");
+					       doc.tags = doc.tags.replace(/[ ]/g,"").split(",");
 					});
 					callback(null, rows,maxNum);//以数组形式返回查询的结果
 				}
@@ -85,16 +86,17 @@ Post.getTen = function(name, page, callback) {
 			if(maxNum == null) maxNum = 0;
 			var maxid = parseInt(maxId-(page-1)*10);
 			var minid = parseInt(maxId-page*10);
-			sql = "SELECT *,left(post,300) AS limitPost FROM blog_Posts WHERE name = '"+name+"' AND id <= "+maxid+" AND id >"+minid+" ORDER BY id DESC;";
+			sql = "SELECT * FROM blog_Posts WHERE name = '"+name+"' AND id <= "+maxid+" AND id >"+minid+" ORDER BY id DESC;";
+			//sql = "SELECT *,left(post,300) AS limitPost FROM blog_Posts WHERE name = '"+name+"' AND id <= "+maxid+" AND id >"+minid+" ORDER BY id DESC;";
 			conn.query(sql, function(err, rows) {
 				if (err) {
 					throw err;
 					return callback(err);
 				} else {
 					 rows.forEach(function (doc) {
-					 	doc.post = doc.limitPost;
+					 	//doc.post = doc.limitPost;
 					       //doc.post = markdown.toHTML(doc.limitPost);//解析 markdown 为 html
-					       doc.tags = doc.tags.split(",");
+					       doc.tags = doc.tags.replace(/[ ]/g,"").split(",");
 					});
 					callback(null, rows,maxNum);//以数组形式返回查询的结果
 				}

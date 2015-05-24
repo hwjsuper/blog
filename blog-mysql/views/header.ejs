@@ -37,15 +37,21 @@
     <script charset="utf-8" src="/kindeditor/kindeditor-min.js"></script>
     <script charset="utf-8" src="/kindeditor/lang/zh_CN.js"></script>
 <script>
-var editor;
+var editor1,editor2;
 KindEditor.ready(function(K) {
-  editor = K.create('textarea', {
+  editor1 = K.create('.post-textarea', {
   allowImageUpload : false,
   width : '100%',
   items : [
     'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold', 'italic',
     'underline', 'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright',
     'insertorderedlist', 'insertunorderedlist', '|', 'emoticons', 'image', 'link']
+  });
+  editor2 = K.create('.comment-textarea', {
+  allowImageUpload : false,
+  width : '100%',
+  items : [
+    'emoticons']
   });
 });
 </script>

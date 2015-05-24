@@ -1,5 +1,5 @@
 var conn = require('./db');
-var markdown = require('markdown').markdown;
+//var markdown = require('markdown').markdown;
 
 function Comment(A_id, name, email, time, post) {
   this.A_id = A_id;
@@ -36,9 +36,9 @@ Comment.get = function(id, callback) {
       return callback(err);
     } 
     else if (rows.length != 0) {
-      rows.forEach(function (doc) {
-            doc.post = markdown.toHTML(doc.post);
-      });
+      // rows.forEach(function (doc) {
+      //       doc.post = markdown.toHTML(doc.post);
+      // });
       callback(null, rows);
     }
     else {
