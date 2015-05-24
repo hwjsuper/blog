@@ -7,7 +7,12 @@
     background-attachment: fixed;
     background-size: cover;
 }
-
+.float-lt {
+    float: left;
+}
+.float-rt {
+    float: right;
+}
 .am-container {
     max-width: 1170px;
 }
@@ -181,49 +186,50 @@ footer a {
     color: #444;
 }
 
-.detail {
+.project {
     background: #fff;
     padding-bottom: 50px;
 }
 
-.detail-h2 {
+.project-h2 {
     text-align: center;
     font-size: 150%;
     margin: 40px 0;
 }
 
-.detail-p {
+.project-p {
     color: #888;
 }
 
-.detail-mb {
+.project-mb {
     margin-bottom: 1rem;
 }
 
-.hope {
+.detail {
     background: transparent;
     padding: 50px 0;
     color: #fff;
 }
 
-.hope-img {
+.detail-img {
     text-align: center;
 }
 
-.hope-hr {
+.detail-hr {
     border-color: #fff;
 }
 
-.hope-title {
+.detail-title {
     font-size: 140%;
 }
 
-.hope a {
+.detail a {
     color: #fff;
+    transition:color .3s;
 }
 
-.hope a:hover {
-    color: #ddd;
+.detail a:hover {
+    color: #095f8a;
 }
 
 .about {
@@ -242,6 +248,15 @@ footer a {
     text-align: center;
 }
 
+.skills {
+    padding: 0 0 50px 0;
+    background: #ffffff;
+}
+.skills h2 {
+    text-align: center;
+    font-size: 150%;
+    margin: 40px 0;
+}
 .footer p {
     color: #7f8c8d;
     margin: 0;
@@ -255,7 +270,9 @@ footer a {
 /*******************************/
 /*             for blog.html                      */
 /*******************************/
-
+.am-form-field {
+    max-width:300px; 
+}
 .blog-g-fixed {
     margin-top: 50px;
     max-width: 100%;
@@ -467,7 +484,10 @@ footer a {
     color: #333;
     -webkit-transition: color .3s;
 }
-
+.blog-content {
+    max-height: 200px;
+    overflow: hidden;
+}
 .blog-pagination a {
     font-size: 1.4rem;
     color: #777;
@@ -501,12 +521,12 @@ footer a {
     margin-left: 20px;
 }
 
-.blog-main .am-badge {
+.blog-main .am-badge{
     color: #fff;
     margin-bottom: 5px;
 }
 
-.blog-main .am-badge:hover {
+.blog-main .am-badge:hover{
     text-decoration: none;
     background-color: #ffffff;
     color: #333;

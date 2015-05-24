@@ -1669,3 +1669,5 @@
 127.0.0.1 - - [20/May/2015:22:45:36 +0800] "GET /assets/js/jquery.min.js HTTP/1.1" 304 0 "http://localhost:8081/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/41.0.2272.76 Chrome/41.0.2272.76 Safari/537.36"
 127.0.0.1 - - [20/May/2015:22:45:36 +0800] "GET /assets/js/amazeui.min.js HTTP/1.1" 304 0 "http://localhost:8081/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/41.0.2272.76 Chrome/41.0.2272.76 Safari/537.36"
 127.0.0.1 - - [20/May/2015:22:45:36 +0800] "GET /assets/i/bg2.jpg HTTP/1.1" 304 0 "http://localhost:8081/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/41.0.2272.76 Chrome/41.0.2272.76 Safari/537.36"
+125.46.39.172 - - [24/May/2015:22:45:51 +0800] "HEAD http://www.baidu.com/ HTTP/1.1" 502 0 "-" "-"
+125.46.40.18 - - [24/May/2015:23:37:23 +0800] "POST http://222.89.188.5/proxy/test.php HTTP/1.1" 502 181 "-" "-"

@@ -1,7 +1,7 @@
 <hr/>
 <ul class="am-comments-list">
 <% for (var i in comments){ %>
-  <li class="am-comment am-comment-success">
+  <li class="am-comment">
     <div class="am-comment-main">
       <header class="am-comment-hd">
         <div class="am-comment-meta">
@@ -16,14 +16,14 @@
 <% } %>
 </ul>
 
-<form method="post">
+<form method="post" class="am-form am-form-horizontal">
 <% if (user) { %>
-  姓名：<input type="text" name="name" value="<%= user.name %>" /><br />
-  邮箱：<input type="text" name="email" value="<%= user.email %>" /><br />
+  姓名：<input type="text" class="am-form-field am-input-sm" name="name" value="<%= user.name %>" /><br />
+  邮箱：<input type="text" class="am-form-field am-input-sm" name="email" value="<%= user.email %>" /><br />
 <% } else { %>
-  姓名：<input type="text" name="name" /><br />
-  邮箱：<input type="text" name="email" /><br />
+  姓名：<input type="text" class="am-form-field am-input-sm" name="name" /><br />
+  邮箱：<input type="text" class="am-form-field am-input-sm" name="email" /><br />
 <% } %>
   <textarea name="content" rows="5" cols="80" class="comment-textarea"></textarea>
-  <input type="submit" value="留言" class="am-btn am-btn-primary am-btn-sm" />
+  <input type="submit" value="留言" class="am-btn am-btn-primary am-btn-sm float-rt" />
 </form>

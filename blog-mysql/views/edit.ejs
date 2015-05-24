@@ -1,14 +1,14 @@
 <%- include header %>
 <div class="am-u-lg-11 blog-main">
-<form method="post">
+<form method="post" class="am-form am-form-horizontal">
   标题：<br />
-  <input type="text" name="title" value="<%= post.title %>" /><br />
+  <input type="text" class="am-form-field am-input-sm" name="title" value="<%= post.title %>" /><br />
   标签：<br />
-  <input type="text" name="tags" value="<% for(var i in post.tags) { %><% if (post.tags[i]) { %><%= post.tags[i]+',' %><% } %><% } %>"/><br />
+  <input type="text" class="am-form-field am-input-sm" name="tags" value="<% for(var i in post.tags) { %><% if (post.tags[i]) { %><%= post.tags[i]+',' %><% } %><% } %>"/><br />
 
   正文：<br />
   <textarea name="post" rows="15" cols="80" class="post-textarea"><%= post.post %></textarea>
-  <input type="submit" value="保存修改" class="am-btn am-btn-primary am-btn-sm" />
+  <input type="submit" value="保存修改" class="am-btn am-btn-primary am-btn-sm float-rt" />
 </form>
 </div>
 <%- include footer %>
