@@ -7,12 +7,15 @@
     background-attachment: fixed;
     background-size: cover;
 }
+
 .float-lt {
     float: left;
 }
+
 .float-rt {
     float: right;
 }
+
 .am-container {
     max-width: 1170px;
 }
@@ -158,21 +161,23 @@ footer a {
 }
 
 .get-title {
+    font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 500%;
     display: inline-block;
     margin-bottom: 0px;
+    font-weight: 500;
 }
 
 @media(max-width: 640px) {
     .get-content {
-        font-size: 22px;
+        font-size: 18px;
         max-width: 690px;
         margin: 0 auto;
         border-top: 1px dashed #fff;
         border-bottom: 1px dashed #fff;
     }
     .get-title {
-        font-size: 250%;
+        font-size: 270%;
         display: inline-block;
         margin-bottom: 0px;
     }
@@ -193,8 +198,16 @@ footer a {
 
 .project-h2 {
     text-align: center;
-    font-size: 150%;
     margin: 40px 0;
+    font-size: 70px;
+    font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-weight: 300;
+    color: #222;
+}
+@media(max-width: 640px) {
+    .project-h2 {
+        font-size: 40px;
+    }
 }
 
 .project-p {
@@ -225,7 +238,7 @@ footer a {
 
 .detail a {
     color: #fff;
-    transition:color .3s;
+    transition: color .3s;
 }
 
 .detail a:hover {
@@ -252,11 +265,39 @@ footer a {
     padding: 0 0 50px 0;
     background: #ffffff;
 }
-.skills h2 {
+
+.skill-h2 {
     text-align: center;
-    font-size: 150%;
     margin: 40px 0;
+    font-size: 70px;
+    font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-weight: 300;
+    color: #222;
 }
+.skills h5 {
+    text-align: center;
+    font-size: 24px;
+    font-weight: normal;
+}
+@media(max-width: 640px) {
+    .skill-h2 {
+        font-size: 40px;
+    }
+}
+
+.skill-tags {
+    text-align: center;
+    /*font-weight: bold;*/
+    
+    margin: 1.6rem 0 1.6rem 0;
+}
+
+.skill-stars {
+    text-align: center;
+    margin: 1.6rem 0 1.6rem 0;
+    /*color: #6cbfee;*/
+}
+
 .footer p {
     color: #7f8c8d;
     margin: 0;
@@ -270,9 +311,11 @@ footer a {
 /*******************************/
 /*             for blog.html                      */
 /*******************************/
+
 .am-form-field {
-    max-width:300px; 
+    max-width: 250px;
 }
+
 .blog-g-fixed {
     margin-top: 50px;
     max-width: 100%;
@@ -484,10 +527,22 @@ footer a {
     color: #333;
     -webkit-transition: color .3s;
 }
+
+.info {
+    margin-top: 50px;
+}
+
 .blog-content {
-    max-height: 200px;
     overflow: hidden;
 }
+
+.line-clamp {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+    max-height: 12.8rem;
+}
+
 .blog-pagination a {
     font-size: 1.4rem;
     color: #777;
@@ -521,12 +576,12 @@ footer a {
     margin-left: 20px;
 }
 
-.blog-main .am-badge{
+.blog-main .am-badge {
     color: #fff;
     margin-bottom: 5px;
 }
 
-.blog-main .am-badge:hover{
+.blog-main .am-badge:hover {
     text-decoration: none;
     background-color: #ffffff;
     color: #333;
@@ -536,8 +591,8 @@ footer a {
 .badge {
     font-weight: normal;
 }
-
 /*for archive*/
+
 .archive a {
     color: #666;
     -webkit-transition: color .3s;
