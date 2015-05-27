@@ -9,12 +9,12 @@ var app = express.Router();
 app.get('/', function(req, res) {
   res.render('index');
 });
-app.get('/about', function(req, res) {
-  res.render('about');
-});
-app.get('/portfolio', function(req, res) {
-  res.render('portfolio');
-});
+// app.get('/about', function(req, res) {
+//   res.render('about');
+// });
+// app.get('/portfolio', function(req, res) {
+//   res.render('portfolio');
+// });
 
 app.get('/blog', function(req, res) {
 	//判断是否是第一页，并把请求的页数转换成 number 类型

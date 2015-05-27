@@ -2,36 +2,79 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Blog</title>
+<title>404 NOT FOUND</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-siteapp"/>
+  <link rel="stylesheet" href="assets/css/amazeui.min.css"/>
+  <link rel="stylesheet" href="assets/css/app.css"/>
+<style type="text/css">
+   .background {
+      background: url('assets/i/bg.jpg');
+      background-size: 100%;
+      background-repeat:no-repeat;
+      background-position: center center;
+      background-color: #000;
+      background-attachment: fixed;
+      background-size: cover;
+    }
+    .error-404-title {
+      font-size: 500%;
+      display: inline-block;
+      text-shadow: 0 3px 0px #404853, 0 6px 0px #333333;
+      color: #FFFFFF;
+      font-weight: 700;
+    }
+    .error-404 {
+      font-family: "ubuntu",sans-serif;
+      margin-top: 100px; 
+      text-align: center;
+      color: #FFFFFF;
+    }
+    .error-404 p {
+      font-size: 2rem;
+    }
+    a {
+      color: #FFFFFF;
+      text-decoration: underline;
+    }
+</style>
+<script type="text/javascript">
+    //用来输出的字符串
+    var myStr = "Oops! The page you requested was not found! <br><br> Go back to home page by <a href='/'>click here </a>";
+    var link = " Go back to home page by <a href='/'>click here </a>"
+    //打印函数， 反复截取myStr字符串， 每一次都比前一次多截取一个字符， 然后反复输出到页面中
+    var print = function(content, str, speed) {
+        var count = 0;
+        var timer = null;
+        timer = setInterval(function() {
+            if (count >= str.length) {
+                clearInterval(timer);
+            } else {
+                content.innerHTML = str.substring(0, count);
+                count++;
+            }
+        }, speed);
+    }
+    onload = function() {
+        var oContent = document.getElementById("content");
+        var oLink = document.getElementById("link");
+        print(oContent, myStr, 100);
+    }
+</script>
 </head>
-<body>
-  <div class="admin-content">
-
-    <div class="am-cf am-padding">
-      <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">404</strong> / <small>That’s an error</small></div>
-    </div>
-
-    <div class="am-g">
-      <div class="am-u-sm-12">
-        <h2 class="am-text-center am-text-xxxl am-margin-top-lg">404. Not Found</h2>
-        <p class="am-text-center">没有找到你要的页面</p>
-        <pre class="page-404">
-          .----.
-       _.'__    `.
-   .--($)($$)---/#\
- .' @          /###\
- :         ,   #####
-  `-..__.-' _.-\###/
-        `;_:    `"'
-      .'"""""`.
-     /,  ya ,\\
-    //  404!  \\
-    `-._______.-'
-    ___`. | .'___
-   (______|______)
-        </pre>
-      </div>
+<body class="background">
+<div class="error-404">
+  <div class="am-g">
+    <div class="am-u-lg-12">
+      <h1 class="error-404-title">4 0 4</h1>
+      <p class="error-404-content" id="content"></p>
+       <!-- <p class="error-404-link" id="link">Go back to home page by <a href='/'>click here </a></p> -->
     </div>
   </div>
+</div>
 </body>
 </html>

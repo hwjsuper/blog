@@ -41,11 +41,13 @@ app.use(function (err, req, res, next) {
 });
 //setting sessions
 app.use(session({
+	resave: true,  
+ 	saveUninitialized: true,  
 	secret: settings.cookiesSecret,
 	key: settings.database, //cookie name
 	cookie: {
 		maxAge: 1000 * 60 * 60 * 24 * 30
-	}, //30 days
+	}//30 days
 	// store: new mysql({
 	//   db: settings.database,
 	//   host: settings.host,

@@ -104,7 +104,7 @@
           Front-end development · Web development
         </p>
       </div>
-      <p>
+      <p data-am-scrollspy-nav="{offsetTop: 50, speed: 2000}">
         <a href="#portfolio" class="am-btn btn-transparent btn-same-size">Portfolio</a>
         <a href="#about" class="am-btn btn-transparent btn-same-size">About</a>
         <a href="/blog" class="am-btn btn-transparent btn-same-size">Blog</a>
@@ -262,7 +262,7 @@
         <div class="am-u-md-3 am-u-sm-6 skill-works">
           <div style="background-color:#000">
           <a href="http://tuanzio0.lofter.com/" target="blank">
-          <img class="am-img-responsive" src="assets/i/work2.jpg" alt=""/>
+          <img class="am-img-responsive" src="assets/i/work1.jpg" alt=""/>
           </a>
           </div>
         </div>
@@ -270,7 +270,7 @@
         <div class="am-u-md-3 am-u-sm-6 skill-works">
           <div style="background-color:#000">
           <a href="http://tuanzio0.lofter.com/" target="blank">
-          <img class="am-img-responsive" src="assets/i/work3.jpg" alt=""/>
+          <img class="am-img-responsive" src="assets/i/work4.jpg" alt=""/>
           </a>
           </div>
         </div>
@@ -293,15 +293,15 @@
 <h1>Intrigued?</h1>
 <br>
 <p>We may have common interests.</p>
-    <p>
-      <a href="mailto:huwenjiao0@gmail.com" class="am-btn btn-transparent btn-same-size">Contact</a>
-      <a href="#" class="am-btn btn-transparent btn-same-size">Resume</a>
-    </p>
-    <div data-am-widget="gotop" class="am-gotop am-gotop-fixed">
-        <a href="#top" title="回到顶部">
-            <i class="am-icon-arrow-up am-success"></i>
-        </a>
-    </div>
+<p>
+  <a href="mailto:huwenjiao0@gmail.com" class="am-btn btn-transparent btn-same-size">Contact</a>
+  <a href="/files/huwenjia-resume.pdf" target="blank" class="am-btn btn-transparent btn-same-size">Resume</a>
+</p>
+<div data-am-widget="gotop" class="am-gotop am-gotop-fixed">
+    <a href="#top" title="回到顶部">
+        <i class="am-icon-arrow-up am-success"></i>
+    </a>
+</div>
 </footer>
 
 <!--[if lt IE 9]>
@@ -317,16 +317,13 @@
 <script src="assets/js/amazeui.min.js"></script>
 <!--<![endif]-->
 <script type="text/javascript">
-$(document).ready(function(){
     var iHeight = $(window).height();
     $(".get").css("height",iHeight);
     var iPaddingTop = (iHeight - $(".get-content").height())/2;
     $(".get").css("padding-top",iPaddingTop);
     $(".get-btn").click(function(){
-      $("html, body").animate({scrollTop: iHeight-50}, '5000');
+      $("html, body").animate({scrollTop: iHeight-50}, '2000');
     });
-});
-
 </script>
 </body>
 </html>
