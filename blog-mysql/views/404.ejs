@@ -12,15 +12,6 @@
   <link rel="stylesheet" href="assets/css/amazeui.min.css"/>
   <link rel="stylesheet" href="assets/css/app.css"/>
 <style type="text/css">
-   .background {
-      background: url('assets/i/bg.jpg');
-      background-size: 100%;
-      background-repeat:no-repeat;
-      background-position: center center;
-      background-color: #000;
-      background-attachment: fixed;
-      background-size: cover;
-    }
     .error-404-title {
       font-size: 500%;
       display: inline-block;
@@ -59,12 +50,20 @@
             }
         }, speed);
     }
+    var setBackground = function(total){
+        var now=new Date(); 
+        var num = now.getSeconds()%total; //产生一个基于目前时间的0到total的整数。 
+        console.log(num);
+        $("body").css("background-image", "url('assets/i/bg"+num+".jpg')");
+    }
     onload = function() {
+        setBackground(41);
         var oContent = document.getElementById("content");
         var oLink = document.getElementById("link");
         print(oContent, myStr, 100);
     }
 </script>
+<script src="assets/js/jquery.min.js"></script>
 </head>
 <body class="background">
 <div class="error-404">
