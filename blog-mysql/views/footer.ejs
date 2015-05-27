@@ -59,6 +59,10 @@
     <script src="/assets/js/amazeui.min.js"></script>
     <!--<![endif]-->
     <script type="text/javascript">
+        var now=new Date(); 
+        var num = now.getSeconds()%41; //产生一个基于目前时间的0到total的整数。 
+        $("body").css("background-image", "url('assets/i/bg"+num+".jpg')");
+
         var iHeight = $(window).height()-110;
         $(".blog-container").css("min-height", iHeight);
     </script>
