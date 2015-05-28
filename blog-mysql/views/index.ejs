@@ -308,25 +308,25 @@
 <script src="assets/js/amazeui.min.js"></script>
 <!--<![endif]-->
 <script type="text/javascript">
-var setBackground = function(total){
-    var now=new Date(); 
-    var num = now.getSeconds()%total; //产生一个基于目前时间的0到total的整数。 
-    console.log(num);
-    $("body").css("background-image", "url('assets/i/bg"+num+".jpg')");
-}
-var setGet = function(){
-    var iHeight = $(window).height();
-    $(".get").css("height",iHeight);
-    var iPaddingTop = (iHeight - $(".get-content").height())/2;
-    $(".get").css("padding-top",iPaddingTop);
-    $(".get-btn").click(function(){
-      $("html, body").animate({scrollTop: iHeight-50}, '2000');
-    });
-}
-onload = function(){
-  setBackground(41);
-  setGet();
-}      
+$(document).ready(function(){
+  var setBackground = function(total){
+      var now=new Date(); 
+      var num = now.getSeconds()%total; //产生一个基于目前时间的0到total的整数。 
+      console.log(num);
+      $("body").css("background-image", "url('/assets/i/bg"+num+".jpg')");
+  }
+  var setGet = function(){
+      var iHeight = $(window).height();
+      $(".get").css("height",iHeight);
+      var iPaddingTop = (iHeight - $(".get-content").height())/2;
+      $(".get").css("padding-top",iPaddingTop);
+      $(".get-btn").click(function(){
+        $("html, body").animate({scrollTop: iHeight-50}, '2000');
+      });
+  }
+    setBackground(41);
+    setGet();
+});
 </script>
 </body>
 </html>

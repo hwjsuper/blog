@@ -130,7 +130,21 @@ Post.getOne = function(name, time, title, callback) {
 		}
 	});
 };
-
+Post.getOneId = function(name, time, title, callback) {
+	var sql ="SELECT id FROM blog_Posts WHERE name = '"+name+"' AND time = '"+time+"' AND title = '"+title+"';";
+	conn.query(sql, function(err, rows) {
+		if (err) {
+			throw err;
+			return callback(err);
+		} 
+		else if (rows.length != 0) {
+			callback(null, rows[0]);
+		}
+		else {
+			callback(null);
+		}
+	});
+};
 //返回所有文章归档信息
 Post.getArchive = function(callback) {
 	var self = this;

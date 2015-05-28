@@ -1,5 +1,5 @@
 .background {
-    background: url('../i/bg2.jpg');
+    /*background: url('../i/bg2.jpg');*/
     background-size: 100%;
     background-repeat: no-repeat;
     background-position: center center;
@@ -37,7 +37,7 @@
     color: #ffffff;
 }
 
-.navbar a:hover {
+.navbar a:hover,.navbar a:visited {
     color: #ffffff;
 }
 
@@ -45,7 +45,7 @@
     line-height: 36px;
 }
 
-.am-topbar-brand a:hover {
+.am-topbar-brand a:hover,.am-topbar-brand a:visited {
     color: #ffffff;
 }
 
@@ -56,7 +56,8 @@
 
 .am-nav>li.am-active>a,
 .am-nav>li.am-active>a:hover,
-.am-nav>li.am-active>a:focus {
+.am-nav>li.am-active>a:focus,
+.am-nav>li.am-active>a:visited {
     color: #fff;
     background-color: rgba(0, 0, 0, 0.6);
     cursor: default;
@@ -149,6 +150,7 @@ footer a {
 .get {
     color: #fff;
     text-align: center;
+    padding-top: 200px;
     background: transparent;
 }
 
@@ -237,7 +239,7 @@ footer a {
     font-size: 140%;
 }
 
-.detail a {
+.detail a,.detail a:visited {
     color: #fff;
     transition: color .3s;
 }
@@ -596,7 +598,7 @@ footer a {
 }
 /*for archive*/
 
-.archive a {
+.archive a, .archive a:visited{
     color: #666;
     -webkit-transition: color .3s;
 }

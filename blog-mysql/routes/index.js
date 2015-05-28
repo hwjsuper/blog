@@ -263,12 +263,11 @@ app.post('/u/:name/:time/:title', function(req, res) {
 		res.redirect('back');
 	}
 	else {
-		Post.getOne(req.params.name, req.params.time, req.params.title, function(err, post) {
+		Post.getOneId(req.params.name, req.params.time, req.params.title, function(err, id) {
 			if (err) {
 				req.flash('error', err);
 				return res.redirect('/blog');
 			} else {
-				var id = post.id;
 				var newComment = new Comment(id, name, email, time, content);
 				newComment.save(function(err) {
 					if (err) {
