@@ -548,7 +548,7 @@ footer a {
     overflow: hidden;
     text-overflow: ellipsis;
     -webkit-box-orient: vertical;
-    max-height: 12.5rem;
+    max-height: 7.9rem;
 }
 
 .blog-pagination a {
