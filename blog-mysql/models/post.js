@@ -138,7 +138,8 @@ Post.getOneId = function(name, time, title, callback) {
 			return callback(err);
 		} 
 		else if (rows.length != 0) {
-			callback(null, rows[0]);
+			console.log(rows[0].id);
+			callback(null, rows[0].id);
 		}
 		else {
 			callback(null);

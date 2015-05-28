@@ -18,11 +18,11 @@
 <hr/>
 <form method="post" class="am-form am-form-horizontal">
 <% if (user) { %>
-  大名：<input type="text" class="am-form-field am-input-sm" name="name" value="<%= user.name %>" />
-  邮箱：<input type="text" class="am-form-field am-input-sm" name="email" value="<%= user.email %>" /><br>
+  大名：<input type="text" required="true" class="am-form-field am-input-sm" name="name" value="<%= user.name %>" />
+  邮箱：<input type="email" required="true" class="am-form-field am-input-sm" name="email" value="<%= user.email %>" /><br>
 <% } else { %>
-  姓名：<input type="text" class="am-form-field am-input-sm" name="name" />
-  邮箱：<input type="text" class="am-form-field am-input-sm" name="email" /><br>
+  姓名：<input type="text" required="true" class="am-form-field am-input-sm" name="name" />
+  邮箱：<input type="email" required="true" class="am-form-field am-input-sm" name="email" /><br>
 <% } %>
   <textarea name="content" rows="5" cols="80" class="comment-textarea"></textarea>
   <input type="submit" value="评论" class="am-btn am-btn-primary am-btn-sm float-rt" />
