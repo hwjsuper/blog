@@ -9,8 +9,8 @@
   <meta name="format-detection" content="telephone=no">
   <meta name="renderer" content="webkit">
   <meta http-equiv="Cache-Control" content="no-siteapp"/>
-  <link rel="stylesheet" href="assets/css/amazeui.min.css"/>
-  <link rel="stylesheet" href="assets/css/app.css"/>
+  <link rel="stylesheet" href="/assets/css/amazeui.min.css"/>
+  <link rel="stylesheet" href="/assets/css/app.css"/>
 <style type="text/css">
     .error-404-title {
       font-size: 500%;
@@ -20,7 +20,6 @@
       font-weight: 700;
     }
     .error-404 {
-      font-family: "ubuntu",sans-serif;
       margin-top: 100px; 
       text-align: center;
       color: #FFFFFF;
@@ -33,11 +32,12 @@
       text-decoration: underline;
     }
 </style>
+<script src="/assets/js/jquery.min.js"></script>
 <script type="text/javascript">
     //用来输出的字符串
     var myStr = "Oops! The page you requested was not found! <br><br> Go back to home page by <a href='/'>click here </a>";
     var link = " Go back to home page by <a href='/'>click here </a>"
-    //打印函数， 反复截取myStr字符串， 每一次都比前一次多截取一个字符， 然后反复输出到页面中
+    //打印函数�?反复截取myStr字符串， 每一次都比前一次多截取一个字符， 然后反复输出到页面中
     var print = function(content, str, speed) {
         var count = 0;
         var timer = null;
@@ -52,9 +52,9 @@
     }
     var setBackground = function(total){
         var now=new Date(); 
-        var num = now.getSeconds()%total; //产生一个基于目前时间的0到total的整数。 
+        var num = now.getSeconds()%total; //产生一个基于目前时间的0到total的整数�?
         console.log(num);
-        $("body").css("background-image", "url('assets/i/bg"+num+".jpg')");
+        $("body").css("background-image", "url('/assets/i/bg"+num+".jpg')");
     }
     onload = function() {
         setBackground(41);
@@ -63,7 +63,7 @@
         print(oContent, myStr, 100);
     }
 </script>
-<script src="assets/js/jquery.min.js"></script>
+
 </head>
 <body class="background">
 <div class="error-404">
