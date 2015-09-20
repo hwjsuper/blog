@@ -439,7 +439,7 @@ footer a {
     width: 50% ! important;
     height: 36px;
     color: #E9E9E9;
-    padding:0;
+    padding: 0;
     padding-left: 0px;
     background: transparent;
     border: 1px solid #E9E9E9;
@@ -457,7 +457,7 @@ footer a {
 .btn-search {
     color: #E9E9E9;
     height: 36px;
-    padding:0 5px 0 10px;
+    padding: 0 5px 0 10px;
     background: transparent;
     border-bottom-right-radius: 0;
     border-top-right-radius: 0;
@@ -631,7 +631,7 @@ footer a {
     bottom: 0;
     width: 2px;
     background: #afdcf8;
-    left: 146px;
+    left: 160px;
     margin: 30px 0;
 }
 
@@ -647,7 +647,7 @@ footer a {
         bottom: 0;
         width: 2px;
         background: #afdcf8;
-        left: 114px;
+        left: 128px;
         margin: 30px 0;
     }
 }
@@ -689,7 +689,7 @@ footer a {
 .icon-sm {
     position: relative;
     top: 15px;
-    left: 7px;
+    left: 12px;
     display: inline-block;
     width: 5px;
     height: 5px;
