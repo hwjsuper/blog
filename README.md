@@ -1,5 +1,6 @@
 # blog
 Node.js搭建简单博客
+<a href="http://huwenjia.cn/">huwenjia.cn</a>
 实现的功能有： 
 1. 简单的发表 
 2. 用户登录注册 
