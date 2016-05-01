@@ -6,12 +6,10 @@
   <% if (lastMonth != post.time.month) { %>
     <li>
         <time class="phase"><%= post.time.month %></time>
-        <span class="icon"></span>
     </li>
   <% lastMonth=post.time.month } %>
   <li> 
     <time class="time"><%= post.time.day %></time>
-    <span class="icon-sm">&nbsp;</span>
     <a class="text" href="/u/<%= post.name %>/<%= post.time.minute%>/<%= post.title %>"><%= post.title %></a>
   </li>
 <% }) %>
